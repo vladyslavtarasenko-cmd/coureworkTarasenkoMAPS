@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FasTik — Доска объявлений</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">FasTik</div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Поиск по объявлениям...">
+                <button onclick="searchAds()">Найти</button>
+            </div>
+            <button class="add-btn" onclick="openModal()">+ Подать объявление</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="categories">
+            <button class="active" onclick="filterCategory('all')">Все</button>
+            <button onclick="filterCategory('electronics')">Электроника</button>
+            <button onclick="filterCategory('transport')">Транспорт</button>
+            <button onclick="filterCategory('home')">Для дома</button>
+        </section>
+
+        <div class="ads-grid" id="adsGrid">
+            </div>
+    </main>
+
+    <div id="adModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Новое объявление</h2>
+            <form id="adForm" onsubmit="addAd(event)">
+                <input type="text" id="titleInput" placeholder="Название товара" required>
+                <input type="number" id="priceInput" placeholder="Цена (грн)" required>
+                <textarea id="descInput" placeholder="Описание товара" required></textarea>
+                <select id="categoryInput">
+                    <option value="electronics">Электроника</option>
+                    <option value="transport">Транспорт</option>
+                    <option value="home">Для дома</option>
+                </select>
+                <input type="text" id="imageInput" placeholder="Ссылка на картинку (URL-адрес)">
+                <button type="submit">Опубликовать</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
