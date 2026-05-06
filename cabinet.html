@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мій кабінет — FasTik</title>
+    <link rel="stylesheet" href="cabinet.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <a href="index.html" class="logo">FasTik</a>
+        <button class="logout-btn" onclick="logout()">Вийти</button>
+    </div>
+</header>
+
+<div class="cabinet-container">
+    <button class="menu-toggle" onclick="toggleMobileMenu()">☰ Меню</button>
+    
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item active" onclick="switchTab('my-ads')">📦 Оголошення</li>
+            <li class="sidebar-item" onclick="switchTab('chat')">💬 Чат</li>
+            <li class="sidebar-item" onclick="switchTab('payments')">💰 Платежі та рахунок OLX</li>
+            <li class="sidebar-item" onclick="switchTab('rating')">⭐ Рейтинг <span class="badge-new">НОВИНКА</span></li>
+            <li class="sidebar-item" onclick="switchTab('job')">🔍 Шукаю роботу</li>
+            <li class="sidebar-item" onclick="switchTab('profile')">👤 Профіль</li>
+            <li class="sidebar-item" onclick="switchTab('settings')">⚙️ Налаштування</li>
+            <li class="sidebar-item" onclick="switchTab('delivery')">🚚 OLX Доставка</li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <!-- Вкладка: Оголошення -->
+        <div id="my-ads" class="tab-content active">
+            <h2>Ваші оголошення</h2>
+            <div class="warning-box">
+                Ваш рахунок: <strong id="userBalance">0</strong> грн.<br>
+                Доступний баланс: 0 бонусів
+                <div class="wallet-buttons">
+                    <button class="btn-primary">Поповнити гаманець</button>
+                    <button class="btn-outline">Купити пакет</button>
+                </div>
+                <a href="#">Дізнатися більше</a>
+            </div>
+            <div class="warning-box">
+                ⚠️ Зверніть увагу, що угоди з FasTik Доставка не оформлюються за сторонніми посиланнями!
+            </div>
+            <div class="filter-tabs">
+                <div class="filter-tab active">Активні</div>
+                <div class="filter-tab">Чат</div>
+                <div class="filter-tab">Платежі</div>
+                <div class="filter-tab">Рейтинг</div>
+            </div>
+            <div id="myAdsList"></div>
+        </div>
+
+        <!-- Вкладка: Чат -->
+        <div id="chat" class="tab-content">
+            <h2>Чат</h2>
+            <div class="filter-tabs">
+                <div class="filter-tab active">Непрочитані</div>
+                <div class="filter-tab">Прочитані</div>
+            </div>
+            <div class="message-item">
+                <div class="message-title">Світланка</div>
+                <div class="message-preview">Вітаю! Купувала в Україні...</div>
+                <div class="message-date">31.01</div>
+            </div>
+            <div class="message-item">
+                <div class="message-title">Олександр</div>
+                <div class="message-preview">Добрий день, товар ще актуальний?</div>
+                <div class="message-date">30.01</div>
+            </div>
+        </div>
+
+        <!-- Вкладка: Платежі -->
+        <div id="payments" class="tab-content">
+            <h2>Платежі та рахунок OLX</h2>
+            <div class="filter-tabs">
+                <div class="filter-tab active">Історія платежів</div>
+                <div class="filter-tab">Електронні рахунки</div>
+                <div class="filter-tab">Бонуси та Повернення</div>
+            </div>
+            <div class="search-box" style="margin: 20px 0;">
+                <input type="text" placeholder="Пошук платежів..." style="width: 70%;">
+                <button class="btn-primary">Пошук</button>
+            </div>
+            <div class="empty-state">Тут зберігатиметься вся історія ваших платежів на FasTik.</div>
+        </div>
+
+        <!-- Вкладка: Рейтинг -->
+        <div id="rating" class="tab-content">
+            <h2>Рейтинг</h2>
+            <div class="filter-tabs">
+                <div class="filter-tab active">Продавці на оцінку</div>
+                <div class="filter-tab">Поставлені оцінки</div>
+                <div class="filter-tab">Отримані оцінки</div>
+            </div>
+            <div class="warning-box">
+                Щоразу, коли ви отримуєте нову посилку з Доставкою FasTik, ви можете оцінити продавця.
+            </div>
+            <div class="empty-state">Поки немає оцінок</div>
+        </div>
+
+        <!-- Вкладка: Шукаю роботу -->
+        <div id="job" class="tab-content">
+            <h2>Профіль кандидата</h2>
+            <div class="warning-box">
+                <strong>Вакансії для вас</strong><br>
+                Розкажіть нам про бажану роботу — і ми знайдемо вакансії.
+            </div>
+            <div class="form-group">
+                <label>Назва бажаної посади</label>
+                <input type="text" placeholder="секретар, консультант">
+            </div>
+            <div class="form-group">
+                <label>Бажаний регіон</label>
+                <input type="text" placeholder="Київ, Одеса, Львів...">
+                <button class="btn-outline" style="margin-top: 10px;">+ Додати регіон</button>
+            </div>
+            <button class="btn-primary">Додати інші вподобання</button>
+            <div class="empty-state" style="margin-top: 30px;">
+                Тут ви бачитимете вакансії, які відповідають вашим інтересам
+            </div>
+        </div>
+
+        <!-- Вкладка: Профіль -->
+        <div id="profile" class="tab-content">
+            <h2>Редагування профілю</h2>
+            <div class="form-group">
+                <label>Ім'я</label>
+                <input type="text" id="profileName">
+            </div>
+            <div class="form-group">
+                <label>Місцезнаходження</label>
+                <input type="text" id="profileLocation">
+            </div>
+            <div class="form-group">
+                <label>Номер телефону</label>
+                <input type="text" id="profilePhone">
+            </div>
+            <div class="form-group">
+                <label>Електронна пошта</label>
+                <input type="email" id="profileEmail">
+            </div>
+            <button class="btn-primary" onclick="saveProfile()">Зберегти</button>
+            <hr style="margin: 20px 0;">
+            <button class="btn-outline" onclick="changeAccountType()">Вибрати тип облікового запису</button>
+        </div>
+
+        <!-- Вкладка: Налаштування -->
+        <div id="settings" class="tab-content">
+            <h2>Налаштування</h2>
+            <div class="info-row">
+                <span>Змінити пароль</span>
+                <button class="btn-outline" onclick="changePassword()">Змінити</button>
+            </div>
+            <div class="info-row">
+                <span>Змінити електронну пошту</span>
+                <button class="btn-outline" onclick="changeEmail()">Змінити</button>
+            </div>
+            <div class="info-row">
+                <span>Змінити номер телефону</span>
+                <button class="btn-outline" onclick="changePhone()">Змінити</button>
+            </div>
+            <div class="info-row">
+                <span>Сповіщення</span>
+                <button class="btn-outline">Налаштувати</button>
+            </div>
+            <div class="info-row">
+                <span>Двофакторна автентифікація</span>
+                <button class="btn-outline">Увімкнути</button>
+            </div>
+            <div class="info-row">
+                <span>Вийти на усіх пристроях</span>
+                <button class="btn-outline" onclick="logout()">Вийти</button>
+            </div>
+        </div>
+
+        <!-- Вкладка: OLX Доставка -->
+        <div id="delivery" class="tab-content">
+            <h2>OLX Доставка</h2>
+            <div class="filter-tabs">
+                <div class="filter-tab active">Мої продажі</div>
+                <div class="filter-tab">Мої покупки</div>
+                <div class="filter-tab">Способи доставки й оплати</div>
+            </div>
+            <div class="empty-state">На цей момент замовлень немає</div>
+            <div class="warning-box">
+                Підвищіть довіру потенційних клієнтів і продавайте товари по всій Україні з FasTik Доставка.
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="cabinet.js"></script>
+</body>
+</html>

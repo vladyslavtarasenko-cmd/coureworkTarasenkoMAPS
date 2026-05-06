@@ -243,6 +243,10 @@ function handleAuthSubmit(event) {
     alert(`Успішно! Дані для входу: ${email}`);
     closeAuthModal();
     document.getElementById('authForm').reset();
+    
+    // Показати кнопку кабінету, сховати кнопку входу
+    document.getElementById('headerLoginBtn').style.display = 'none';
+    document.getElementById('cabinetBtn').style.display = 'inline-block';
 }
 
 // Зміна мови

@@ -15,15 +15,14 @@
                 <input type="text" id="searchInput" placeholder="Пошук по оголошенням...">
                 <button id="headerSearchBtn" onclick="searchAds()">Знайти</button>
             </div>
-            <div class="header-right">
-                <select id="langSelect" onchange="changeLanguage()">
-                    <option value="uk">🇺🇦 UA</option>
-                    <option value="en">🇬🇧 EN</option>
-                </select>
-                <button id="headerLoginBtn" class="login-btn" onclick="openAuthModal()">Увійти</button>
-                <button id="headerAddBtn" class="add-btn" onclick="openModal()">+ Подати оголошення</button>
-            </div>
+  <div class="header-right">
+    <select id="langSelect" onchange="changeLanguage()">...</select>
+    <button id="headerLoginBtn" class="login-btn" onclick="openAuthModal()">Увійти</button>
+    <a id="cabinetBtn" href="cabinet.html" class="cabinet-link" style="display: none;">👤 Мій кабінет</a>
+    <button id="headerAddBtn" class="add-btn" onclick="openModal()">+ Подати оголошення</button>
+</div>
         </div>
+        <a href="cabinet.html" class="cabinet-link">Мій кабінет</a>
     </header>
 
     <main class="container">
