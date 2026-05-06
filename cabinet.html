@@ -3,188 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мій кабінет — FasTik</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Особистий кабінет — FasTik</title>
     <link rel="stylesheet" href="cabinet.css">
-</head>
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
 
-<header>
-    <div class="header-container">
-        <div class="logo">FasTik</div>
-        <div class="header-right">
-            <select id="langSelect" onchange="changeLanguage()">
-                <option value="uk">🇺🇦 UA</option>
-                <option value="en">🇬🇧 EN</option>
-            </select>
-            <button class="login-btn" onclick="logout()" id="logoutBtn">Вийти</button>
-            <button id="headerAddBtn" class="add-btn" onclick="window.location.href='index.html'">+ Подати оголошення</button>
+    <header>
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">FasTik</div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Пошук по оголошенням..." onkeydown="if(event.key === 'Enter') searchFromCabinet()">
+                <button onclick="searchFromCabinet()">Знайти</button>
+            </div>
+            <div class="header-right">
+                <select id="langSelectCabinet" onchange="changeLanguageCabinet()">
+                    <option value="uk">🇺🇦 UA</option>
+                    <option value="en">🇬🇧 EN</option>
+                </select>
+                <button class="add-btn" onclick="window.location.href='index.html?openModal=true'">+ Подати оголошення</button>
+            </div>
         </div>
+    </header>
+
+    <div class="cabinet-container">
+        <aside class="sidebar">
+            <div class="profile-header">
+                <div class="profile-avatar">В</div>
+                <div class="profile-info">
+                    <span class="profile-name">Владислав</span>
+                </div>
+            </div>
+
+            <nav class="profile-nav">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-item active" onclick="switchCabinetTab('ads')">Оголошення</a></li>
+                    <li><a href="#" class="nav-item" onclick="switchCabinetTab('chats')">Чат</a></li>
+                    <li><a href="#" class="nav-item" onclick="switchCabinetTab('payments')">Платежі та рахунок OLX</a></li>
+                    <li><a href="#" class="nav-item badge-new" onclick="switchCabinetTab('rating')">Рейтинг</a></li>
+                    <li><a href="#" class="nav-item" onclick="switchCabinetTab('jobs')">Шукаю роботу</a></li>
+                    <li><a href="#" class="nav-item badge-new" onclick="switchCabinetTab('employers')">Роботодавці на OLX</a></li>
+                    <li><a href="#" class="nav-item" onclick="switchCabinetTab('profile-settings')">Профіль</a></li>
+                    <li><a href="#" class="nav-item" onclick="switchCabinetTab('settings')">Налаштування</a></li>
+                    <li><a href="#" class="nav-item nav-delivery" onclick="switchCabinetTab('delivery')"><span>📦</span> OLX Доставка</a></li>
+                </ul>
+
+                <div class="favorites-section">
+                    <h4>Обрані:</h4>
+                    <ul class="nav-list">
+                        <li><a href="#" class="nav-item" onclick="switchCabinetTab('fav-ads')">Оголошення <span class="badge">0</span></a></li>
+                        <li><a href="#" class="nav-item" onclick="switchCabinetTab('fav-searches')">Пошуки <span class="badge">0</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="logout-section">
+                    <a href="index.html" class="nav-item logout-item">Вийти</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="cabinet-content" id="cabinetContent">
+            <h2 id="contentTitle">Оголошення</h2>
+            <div class="content-body" id="contentBody">
+                <p>У вас поки немає активних оголошень.</p>
+            </div>
+        </main>
     </div>
-</header>
 
-<div class="cabinet-container">
-    <aside class="sidebar">
-        <nav class="sidebar-nav">
-            <a href="#" class="sidebar-link active" data-tab="my-ads">📦 Оголошення</a>
-            <a href="#" class="sidebar-link" data-tab="chat">💬 Чат</a>
-            <a href="#" class="sidebar-link" data-tab="payments">💰 Платежі</a>
-            <a href="#" class="sidebar-link" data-tab="rating">⭐ Рейтинг <span class="badge">НОВИНКА</span></a>
-            <a href="#" class="sidebar-link" data-tab="job">🔍 Шукаю роботу</a>
-            <a href="#" class="sidebar-link" data-tab="profile">👤 Профіль</a>
-            <a href="#" class="sidebar-link" data-tab="settings">⚙️ Налаштування</a>
-            <a href="#" class="sidebar-link" data-tab="delivery">🚚 OLX Доставка</a>
-        </nav>
-    </aside>
-
-    <main class="cabinet-content">
-        <!-- Оголошення -->
-        <div id="my-ads" class="cabinet-tab active">
-            <h2>Ваші оголошення</h2>
-            <div class="balance-card">
-                <p>Ваш рахунок: <strong id="userBalance">0</strong> грн.</p>
-                <p>Доступний баланс: <strong id="userBonus">0</strong> бонусів</p>
-                <div class="balance-buttons">
-                    <button class="btn-primary" onclick="alert('Функція поповнення')">Поповнити гаманець</button>
-                    <button class="btn-secondary" onclick="alert('Функція покупки пакету')">Купити пакет</button>
-                </div>
-                <a href="#" class="info-link">Дізнатися більше</a>
-            </div>
-            <div class="warning-message">
-                ⚠️ Зверніть увагу, що угоди з FasTik Доставка не оформлюються за сторонніми посиланнями!
-            </div>
-            <div id="myAdsList" class="ads-list"></div>
-        </div>
-
-        <!-- Чат -->
-        <div id="chat" class="cabinet-tab">
-            <h2>Чат</h2>
-            <div class="chat-tabs">
-                <button class="chat-tab active" data-chat="unread">Непрочитані</button>
-                <button class="chat-tab" data-chat="read">Прочитані</button>
-            </div>
-            <div id="chatList" class="chat-list"></div>
-        </div>
-
-        <!-- Платежі -->
-        <div id="payments" class="cabinet-tab">
-            <h2>Платежі та рахунок</h2>
-            <div class="payment-tabs">
-                <button class="payment-tab active" data-payment="history">Історія платежів</button>
-                <button class="payment-tab" data-payment="invoices">Електронні рахунки</button>
-                <button class="payment-tab" data-payment="bonus">Бонуси та Повернення</button>
-            </div>
-            <div class="search-box payments-search">
-                <input type="text" id="paymentSearch" placeholder="Пошук платежів...">
-                <button class="btn-primary" onclick="searchPayments()">Пошук</button>
-            </div>
-            <div id="paymentsList" class="payments-list"></div>
-        </div>
-
-        <!-- Рейтинг -->
-        <div id="rating" class="cabinet-tab">
-            <h2>Рейтинг</h2>
-            <div class="rating-tabs">
-                <button class="rating-tab active" data-rating="to-rate">Продавці на оцінку</button>
-                <button class="rating-tab" data-rating="given">Поставлені оцінки</button>
-                <button class="rating-tab" data-rating="received">Отримані оцінки</button>
-            </div>
-            <div class="info-message">
-                Щоразу, коли ви отримуєте нову посилку з Доставкою FasTik, ви можете оцінити продавця.
-            </div>
-            <div id="ratingsList" class="ratings-list"></div>
-        </div>
-
-        <!-- Шукаю роботу -->
-        <div id="job" class="cabinet-tab">
-            <h2>Профіль кандидата</h2>
-            <div class="job-form">
-                <div class="form-group">
-                    <label>Назва бажаної посади</label>
-                    <input type="text" id="desiredPosition" placeholder="секретар, консультант">
-                </div>
-                <div class="form-group">
-                    <label>Бажаний регіон</label>
-                    <input type="text" id="desiredRegion" placeholder="Київ, Одеса, Львів...">
-                </div>
-                <button class="btn-primary" onclick="saveJobPreferences()">Зберегти вподобання</button>
-            </div>
-            <div id="jobVacancies" class="vacancies-list"></div>
-        </div>
-
-        <!-- Профіль -->
-        <div id="profile" class="cabinet-tab">
-            <h2>Редагування профілю</h2>
-            <div class="profile-form">
-                <div class="form-group">
-                    <label>Ім'я</label>
-                    <input type="text" id="profileName" placeholder="Ваше ім'я">
-                </div>
-                <div class="form-group">
-                    <label>Місцезнаходження</label>
-                    <input type="text" id="profileLocation" placeholder="Місто">
-                </div>
-                <div class="form-group">
-                    <label>Номер телефону</label>
-                    <input type="tel" id="profilePhone" placeholder="+38 XXX XXX XXXX">
-                </div>
-                <div class="form-group">
-                    <label>Електронна пошта</label>
-                    <input type="email" id="profileEmail" placeholder="email@example.com">
-                </div>
-                <button class="btn-primary" onclick="saveProfile()">Зберегти профіль</button>
-                <button class="btn-secondary" onclick="changeAccountType()">Вибрати тип облікового запису</button>
-            </div>
-        </div>
-
-        <!-- Налаштування -->
-        <div id="settings" class="cabinet-tab">
-            <h2>Налаштування</h2>
-            <div class="settings-list">
-                <div class="setting-item">
-                    <span>Змінити пароль</span>
-                    <button class="btn-secondary" onclick="changePassword()">Змінити</button>
-                </div>
-                <div class="setting-item">
-                    <span>Змінити електронну пошту</span>
-                    <button class="btn-secondary" onclick="changeEmail()">Змінити</button>
-                </div>
-                <div class="setting-item">
-                    <span>Змінити номер телефону</span>
-                    <button class="btn-secondary" onclick="changePhone()">Змінити</button>
-                </div>
-                <div class="setting-item">
-                    <span>Сповіщення</span>
-                    <button class="btn-secondary" onclick="openNotifications()">Налаштувати</button>
-                </div>
-                <div class="setting-item">
-                    <span>Двофакторна автентифікація</span>
-                    <button class="btn-secondary" onclick="enable2FA()">Увімкнути</button>
-                </div>
-                <div class="setting-item">
-                    <span>Вийти на усіх пристроях</span>
-                    <button class="btn-danger" onclick="logoutAllDevices()">Вийти</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- OLX Доставка -->
-        <div id="delivery" class="cabinet-tab">
-            <h2>OLX Доставка</h2>
-            <div class="delivery-tabs">
-                <button class="delivery-tab active" data-delivery="sales">Мої продажі</button>
-                <button class="delivery-tab" data-delivery="purchases">Мої покупки</button>
-                <button class="delivery-tab" data-delivery="methods">Способи доставки</button>
-            </div>
-            <div id="deliveryList" class="delivery-list"></div>
-            <div class="info-message">
-                Підвищіть довіру потенційних клієнтів і продавайте товари по всій Україні з FasTik Доставка.
-            </div>
-        </div>
-    </main>
-</div>
-
-<script src="script.js"></script>
-<script src="cabinet.js"></script>
+    <script src="cabinet.js"></script>
 </body>
 </html>

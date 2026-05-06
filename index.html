@@ -8,17 +8,22 @@
 </head>
 <body>
 
-    <div class="header-right">
-    <select id="langSelect" onchange="changeLanguage()">
-        <option value="uk">🇺🇦 UA</option>
-        <option value="en">🇬🇧 EN</option>
-    </select>
-    <button id="headerLoginBtn" class="login-btn" onclick="openAuthModal()">Увійти</button>
-    <a href="cabinet.html" id="cabinetBtn" class="cabinet-btn" style="display: none;">👤 Мій кабінет</a>
-    <button id="headerAddBtn" class="add-btn" onclick="openModal()">+ Подати оголошення</button>
-</div>
+    <header>
+        <div class="header-container">
+            <div class="logo">FasTik</div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Пошук по оголошенням...">
+                <button id="headerSearchBtn" onclick="searchAds()">Знайти</button>
+            </div>
+            <div class="header-right">
+                <select id="langSelect" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 UA</option>
+                    <option value="en">🇬🇧 EN</option>
+                </select>
+                <button id="headerLoginBtn" class="login-btn" onclick="goToCabinet()">Увійти</button>
+                <button id="headerAddBtn" class="add-btn" onclick="openModal()">+ Подати оголошення</button>
+            </div>
         </div>
-        <a href="cabinet.html" class="cabinet-link">Мій кабінет</a>
     </header>
 
     <main class="container">
@@ -29,57 +34,8 @@
             <button id="catHome" onclick="filterCategory('home')">Для дому</button>
         </section>
 
-        <div class="ads-grid" id="adsGrid">
-            </div>
+        <div class="ads-grid" id="adsGrid"></div>
     </main>
-
-    <div id="authModal" class="modal">
-        <div class="modal-content auth-modal-content">
-            <span class="close" onclick="closeAuthModal()">&times;</span>
-            
-            <button class="social-btn facebook" onclick="socialAuth('Facebook')">
-                <span class="social-icon">f</span> <span id="authFacebook">Продовжити через Facebook</span>
-            </button>
-            <button class="social-btn apple" onclick="socialAuth('Apple')">
-                <span class="social-icon"></span> <span id="authApple">Продовжити через Apple</span>
-            </button>
-            <button class="social-btn google" onclick="socialAuth('Google')">
-                <span class="social-icon">G</span> <span id="authGoogle">Продовжити через Google</span>
-            </button>
-
-            <div class="divider">
-                <span id="authOr">ЧИ</span>
-            </div>
-
-            <div class="tabs">
-                <div class="tab active" id="authTabLogin" onclick="switchTab('login')">Увійти</div>
-                <div class="tab" id="authTabRegister" onclick="switchTab('register')">Зареєструватися</div>
-            </div>
-
-            <form id="authForm" onsubmit="handleAuthSubmit(event)">
-                <div class="form-group">
-                    <label id="authEmailLabel" for="authEmail">Електронна пошта чи телефон</label>
-                    <input type="text" id="authEmail" required placeholder="example@email.com або номер телефону">
-                </div>
-
-                <div class="form-group">
-                    <label id="authPasswordLabel" for="authPassword">Пароль</label>
-                    <div class="password-wrapper">
-                        <input type="password" id="authPassword" required placeholder="Введіть пароль">
-                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
-                    </div>
-                </div>
-
-                <a href="#" id="authForgot" class="forgot-password" onclick="alert('Функція відновлення пароля')">Забули пароль?</a>
-
-                <button type="submit" id="authSubmitBtn" class="submit-btn">Увійти</button>
-            </form>
-
-            <p class="terms" id="authTerms">
-                Під час входу ви погоджуєтеся з нашими <a href="#">Умовами користування</a>.
-            </p>
-        </div>
-    </div>
 
     <div id="adModal" class="modal">
         <div class="modal-content">

@@ -1,279 +1,118 @@
-// Завантаження даних користувача
-let currentUser = {
-    name: '',
-    email: '',
-    phone: '',
-    location: '',
-    balance: 0,
-    bonus: 0
+let currentLang = 'uk';
+
+const cabinetTranslations = {
+    uk: {
+        ads: "Оголошення",
+        chats: "Чат",
+        payments: "Платежі та рахунок OLX",
+        rating: "Рейтинг",
+        jobs: "Шукаю роботу",
+        employers: "Роботодавці на OLX",
+        "profile-settings": "Профіль",
+        settings: "Налаштування",
+        delivery: "OLX Доставка",
+        favoritesAds: "Оголошення",
+        favoritesSearches: "Пошуки",
+        logout: "Вийти",
+        content: {
+            ads: "У вас немає активних оголошень.",
+            chats: "Немає нових повідомлень.",
+            payments: "Ваш баланс 0.00 грн.",
+            rating: "Ваш поточний рейтинг відсутній.",
+            jobs: "Тут відображатимуться ваші резюме та пошук роботи.",
+            employers: "Інформація про роботодавців в системі.",
+            "profile-settings": "Редагування вашого профілю.",
+            settings: "Налаштування безпеки та сповіщень.",
+            delivery: "У вас немає замовлень через OLX Доставку."
+        }
+    },
+    en: {
+        ads: "Ads",
+        chats: "Chats",
+        payments: "Payments & OLX Wallet",
+        rating: "Rating",
+        jobs: "Looking for a job",
+        employers: "Employers on OLX",
+        "profile-settings": "Profile",
+        settings: "Settings",
+        delivery: "OLX Delivery",
+        favoritesAds: "Ads",
+        favoritesSearches: "Searches",
+        logout: "Log out",
+        content: {
+            ads: "You do not have any active ads.",
+            chats: "No new messages.",
+            payments: "Your balance is 0.00 UAH.",
+            rating: "No rating available currently.",
+            jobs: "Your resumes and job search will be displayed here.",
+            employers: "Information about employers in the system.",
+            "profile-settings": "Edit your profile details.",
+            settings: "Security and notification settings.",
+            delivery: "You have no OLX Delivery orders."
+        }
+    }
 };
 
-let userAds = [];
-let userMessages = [];
-let userPayments = [];
-let userRatings = [];
-let userJobPreferences = {};
+function switchCabinetTab(tabName) {
+    // Змінюємо клас active для навігації
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => item.classList.remove('active'));
+    
+    // Знаходимо потрібний елемент
+    event.target.classList.add('active');
 
-// Ініціалізація кабінету
-document.addEventListener('DOMContentLoaded', () => {
-    loadUserData();
-    loadMyAds();
-    loadMessages();
-    loadPayments();
-    loadRatings();
-    loadJobVacancies();
-    loadDeliveryOrders();
-    setupTabSwitching();
-    setupChatTabs();
-    setupPaymentTabs();
-    setupRatingTabs();
-    setupDeliveryTabs();
-});
-
-// Завантаження даних користувача з localStorage
-function loadUserData() {
-    const savedUser = localStorage.getItem('userData');
-    if (savedUser) {
-        currentUser = JSON.parse(savedUser);
+    const contentTitle = document.getElementById('contentTitle');
+    const contentBody = document.getElementById('contentBody');
+    
+    // Переклад
+    const t = cabinetTranslations[currentLang];
+    
+    contentTitle.innerText = event.target.innerText; // Встановлюємо назву з меню
+    
+    let textKey = tabName;
+    if (t.content[textKey]) {
+        contentBody.innerHTML = `<p>${t.content[textKey]}</p>`;
     } else {
-        currentUser = {
-            name: localStorage.getItem('userName') || 'Користувач',
-            email: localStorage.getItem('userEmail') || 'user@example.com',
-            phone: '',
-            location: '',
-            balance: 0,
-            bonus: 0
-        };
-    }
-    
-    document.getElementById('profileName').value = currentUser.name;
-    document.getElementById('profileEmail').value = currentUser.email;
-    document.getElementById('profilePhone').value = currentUser.phone;
-    document.getElementById('profileLocation').value = currentUser.location;
-    document.getElementById('userBalance').innerText = currentUser.balance;
-    document.getElementById('userBonus').innerText = currentUser.bonus;
-}
-
-// Збереження профілю
-function saveProfile() {
-    currentUser.name = document.getElementById('profileName').value;
-    currentUser.email = document.getElementById('profileEmail').value;
-    currentUser.phone = document.getElementById('profilePhone').value;
-    currentUser.location = document.getElementById('profileLocation').value;
-    
-    localStorage.setItem('userData', JSON.stringify(currentUser));
-    alert('Профіль збережено!');
-}
-
-// Завантаження моїх оголошень
-function loadMyAds() {
-    const savedAds = localStorage.getItem('myAds');
-    if (savedAds) {
-        userAds = JSON.parse(savedAds);
-    } else {
-        userAds = JSON.parse(localStorage.getItem('ads')) || [];
-    }
-    
-    const container = document.getElementById('myAdsList');
-    if (userAds.length === 0) {
-        container.innerHTML = '<div class="empty-state">У вас ще немає оголошень. Створіть перше!</div>';
-        return;
-    }
-    
-    container.innerHTML = userAds.map(ad => `
-        <div class="ad-item">
-            <img src="${ad.image || 'https://via.placeholder.com/60'}" alt="${ad.title}">
-            <div class="ad-info">
-                <h4>${ad.title}</h4>
-                <p>${ad.price} грн</p>
-                <small>${ad.date || new Date().toLocaleDateString()}</small>
-            </div>
-            <div class="ad-actions">
-                <button class="btn-small" onclick="editAd(${ad.id})">Редагувати</button>
-                <button class="btn-small danger" onclick="deleteAd(${ad.id})">Видалити</button>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Видалення оголошення
-function deleteAd(id) {
-    if (confirm('Видалити оголошення?')) {
-        userAds = userAds.filter(ad => ad.id !== id);
-        localStorage.setItem('myAds', JSON.stringify(userAds));
-        loadMyAds();
+        contentBody.innerHTML = `<p>Дані завантажуються...</p>`;
     }
 }
 
-// Редагування оголошення
-function editAd(id) {
-    const ad = userAds.find(a => a.id === id);
-    if (ad) {
-        const newTitle = prompt('Нова назва:', ad.title);
-        const newPrice = prompt('Нова ціна:', ad.price);
-        if (newTitle) ad.title = newTitle;
-        if (newPrice) ad.price = parseFloat(newPrice);
-        localStorage.setItem('myAds', JSON.stringify(userAds));
-        loadMyAds();
-    }
-}
-
-// Завантаження повідомлень
-function loadMessages() {
-    const container = document.getElementById('chatList');
-    const messages = [
-        { name: 'Світланка', text: 'Вітаю! Купувала в Україні...', date: '31.01', read: false },
-        { name: 'Олександр', text: 'Добрий день, товар ще актуальний?', date: '30.01', read: false },
-        { name: 'Марія', text: 'Дякую за покупку!', date: '29.01', read: true }
-    ];
+function changeLanguageCabinet() {
+    currentLang = document.getElementById('langSelectCabinet').value;
+    // Оновлення тексту в кабінеті
+    const t = cabinetTranslations[currentLang];
     
-    container.innerHTML = messages.map(msg => `
-        <div class="chat-message ${msg.read ? 'read' : 'unread'}" onclick="openChat('${msg.name}')">
-            <div class="chat-name">${msg.name}</div>
-            <div class="chat-text">${msg.text}</div>
-            <div class="chat-date">${msg.date}</div>
-        </div>
-    `).join('');
-}
-
-// Завантаження платежів
-function loadPayments() {
-    const container = document.getElementById('paymentsList');
-    const payments = JSON.parse(localStorage.getItem('payments')) || [];
-    
-    if (payments.length === 0) {
-        container.innerHTML = '<div class="empty-state">Тут зберігатиметься вся історія ваших платежів на FasTik.</div>';
-        return;
-    }
-    
-    container.innerHTML = payments.map(p => `
-        <div class="payment-item">
-            <span>${p.date}</span>
-            <span>${p.description}</span>
-            <span class="${p.amount > 0 ? 'positive' : 'negative'}">${p.amount} грн</span>
-        </div>
-    `).join('');
-}
-
-// Завантаження рейтингів
-function loadRatings() {
-    const container = document.getElementById('ratingsList');
-    container.innerHTML = '<div class="empty-state">Поки немає оцінок</div>';
-}
-
-// Завантаження вакансій
-function loadJobVacancies() {
-    const saved = localStorage.getItem('jobPreferences');
-    if (saved) {
-        userJobPreferences = JSON.parse(saved);
-        document.getElementById('desiredPosition').value = userJobPreferences.position || '';
-        document.getElementById('desiredRegion').value = userJobPreferences.region || '';
-    }
-}
-
-// Збереження вподобань для роботи
-function saveJobPreferences() {
-    userJobPreferences = {
-        position: document.getElementById('desiredPosition').value,
-        region: document.getElementById('desiredRegion').value
-    };
-    localStorage.setItem('jobPreferences', JSON.stringify(userJobPreferences));
-    alert('Вподобання збережено! Ми знайдемо для вас відповідні вакансії.');
-}
-
-// Завантаження замовлень доставки
-function loadDeliveryOrders() {
-    const container = document.getElementById('deliveryList');
-    container.innerHTML = '<div class="empty-state">На цей момент замовлень немає</div>';
-}
-
-// Перемикання вкладок
-function setupTabSwitching() {
-    document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const tabId = link.dataset.tab;
-            
-            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-            document.querySelectorAll('.cabinet-tab').forEach(t => t.classList.remove('active'));
-            
-            link.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        });
+    document.querySelectorAll('.nav-item').forEach(el => {
+        if (el.innerText.includes("Оголошення") && !el.closest('.favorites-section')) el.innerText = t.ads;
+        if (el.innerText.includes("Чат")) el.innerText = t.chats;
+        if (el.innerText.includes("Платежі")) el.innerText = t.payments;
+        if (el.innerText.includes("Рейтинг")) el.innerText = t.rating;
+        if (el.innerText.includes("Шукаю роботу")) el.innerText = t.jobs;
+        if (el.innerText.includes("Роботодавці")) el.innerText = t.employers;
+        if (el.innerText.includes("Профіль")) el.innerText = t["profile-settings"];
+        if (el.innerText.includes("Налаштування")) el.innerText = t.settings;
+        if (el.innerText.includes("OLX Доставка")) el.innerHTML = `<span>📦</span> ${t.delivery}`;
+        if (el.classList.contains('logout-item')) el.innerText = t.logout;
     });
-}
 
-// Функції для налаштувань
-function changePassword() {
-    const newPass = prompt('Введіть новий пароль:');
-    if (newPass && newPass.length >= 6) {
-        localStorage.setItem('userPassword', newPass);
-        alert('Пароль змінено!');
-    } else if (newPass) {
-        alert('Пароль має бути не менше 6 символів');
+    // Оновлення тексту заголовка поточної вкладки
+    const activeEl = document.querySelector('.nav-item.active');
+    if (activeEl) {
+        // Оновлюємо заголовок
+        document.getElementById('contentTitle').innerText = activeEl.innerText;
     }
 }
 
-function changeEmail() {
-    const newEmail = prompt('Введіть нову електронну пошту:');
-    if (newEmail && newEmail.includes('@')) {
-        currentUser.email = newEmail;
-        localStorage.setItem('userData', JSON.stringify(currentUser));
-        document.getElementById('profileEmail').value = newEmail;
-        alert('Email змінено!');
-    } else if (newEmail) {
-        alert('Введіть коректний email');
-    }
+function searchFromCabinet() {
+    const q = document.getElementById('searchInput').value;
+    window.location.href = `index.html?search=${encodeURIComponent(q)}`;
 }
 
-function changePhone() {
-    const newPhone = prompt('Введіть новий номер телефону (+38XXXXXXXXX):');
-    if (newPhone && newPhone.length >= 10) {
-        currentUser.phone = newPhone;
-        localStorage.setItem('userData', JSON.stringify(currentUser));
-        document.getElementById('profilePhone').value = newPhone;
-        alert('Телефон змінено!');
-    } else if (newPhone) {
-        alert('Введіть коректний номер телефону');
-    }
+function goToCabinet() {
+    window.location.href = 'cabinet.html';
 }
 
-function openNotifications() {
-    alert('Налаштування сповіщень:\n- Email сповіщення\n- Push сповіщення\n- СМС сповіщення');
-}
-
-function enable2FA() {
-    alert('Двофакторна автентифікація буде налаштована найближчим часом.');
-}
-
-function logoutAllDevices() {
-    if (confirm('Ви впевнені, що хочете вийти на всіх пристроях?')) {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userData');
-        window.location.href = 'index.html';
-    }
-}
-
-function changeAccountType() {
-    const type = confirm('Приватна особа - OK, Компанія - Скасувати');
-    if (type) {
-        alert('Тип акаунту: Приватна особа');
-    } else {
-        alert('Тип акаунту: Компанія (потрібні додаткові документи)');
-    }
-}
-
-function openChat(name) {
-    alert(`Чат з ${name} буде доступний найближчим часом.`);
-}
-
-function searchPayments() {
-    const query = document.getElementById('paymentSearch').value.toLowerCase();
-    alert(`Пошук платежів: "${query}" (функція в розробці)`);
-}
-
-// Функція виходу
-function logout() {
-    localStorage.removeItem('isLoggedIn');
-    window.location.href = 'index.html';
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Встановлюємо базовий контент
+    document.getElementById('contentTitle').innerText = cabinetTranslations[currentLang].ads;
+});

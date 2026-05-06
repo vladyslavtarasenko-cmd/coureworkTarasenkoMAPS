@@ -392,18 +392,3 @@ header {
     cursor: pointer;
     border-radius: 4px;
 }
-.cabinet-btn {
-    background-color: #00a49f;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.cabinet-btn:hover {
-    background-color: #007f7a;
-}

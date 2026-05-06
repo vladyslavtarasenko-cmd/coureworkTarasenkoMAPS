@@ -243,10 +243,6 @@ function handleAuthSubmit(event) {
     alert(`Успішно! Дані для входу: ${email}`);
     closeAuthModal();
     document.getElementById('authForm').reset();
-    
-    // Показати кнопку кабінету, сховати кнопку входу
-    document.getElementById('headerLoginBtn').style.display = 'none';
-    document.getElementById('cabinetBtn').style.display = 'inline-block';
 }
 
 // Зміна мови
@@ -301,57 +297,4 @@ function updateLanguageTexts() {
 document.addEventListener('DOMContentLoaded', () => {
     renderAds(ads);
     updateLanguageTexts();
-});
-// Перевірка чи користувач залогінений
-function checkLoginStatus() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const loginBtn = document.getElementById('headerLoginBtn');
-    const cabinetBtn = document.getElementById('cabinetBtn');
-    
-    if (isLoggedIn) {
-        if (loginBtn) loginBtn.style.display = 'none';
-        if (cabinetBtn) cabinetBtn.style.display = 'inline-block';
-    } else {
-        if (loginBtn) loginBtn.style.display = 'inline-block';
-        if (cabinetBtn) cabinetBtn.style.display = 'none';
-    }
-}
-
-// Змініть функцію handleAuthSubmit
-function handleAuthSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById('authEmail').value;
-    const password = document.getElementById('authPassword').value;
-    
-    if (email && password) {
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('userName', email.split('@')[0]);
-        
-        alert('Вхід виконано успішно!');
-        closeAuthModal();
-        document.getElementById('authForm').reset();
-        checkLoginStatus();
-        
-        // Перенаправлення в кабінет
-        window.location.href = 'cabinet.html';
-    } else {
-        alert('Будь ласка, заповніть всі поля');
-    }
-}
-
-// Функція виходу
-function logout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('userEmail');
-    localStorage.removeItem('userName');
-    checkLoginStatus();
-    location.reload();
-}
-
-// Додати перевірку при завантаженні
-document.addEventListener('DOMContentLoaded', () => {
-    renderAds(ads);
-    updateLanguageTexts();
-    checkLoginStatus();
 });

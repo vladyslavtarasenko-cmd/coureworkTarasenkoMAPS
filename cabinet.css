@@ -10,512 +10,146 @@ body {
     color: #333;
 }
 
-/* Header */
-header {
-    background-color: #002f34;
-    color: #fff;
-    padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-}
-
-.logo:hover {
-    color: #ffce00;
-}
-
-.logout-btn {
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.logout-btn:hover {
-    background-color: #fff;
-    color: #002f34;
-}
-
-/* Main layout */
 .cabinet-container {
-    max-width: 1400px;
-    margin: 20px auto;
-    padding: 0 20px;
     display: flex;
-    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    gap: 20px;
+    padding: 0 20px;
 }
 
-/* Sidebar */
 .sidebar {
-    width: 260px;
-    flex-shrink: 0;
-    background: #fff;
+    width: 280px;
+    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
     height: fit-content;
 }
 
-.sidebar-menu {
-    list-style: none;
-}
-
-.sidebar-item {
-    padding: 12px 20px;
-    cursor: pointer;
-    transition: 0.2s;
-    border-left: 3px solid transparent;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.sidebar-item:hover {
-    background-color: #f5f5f5;
-}
-
-.sidebar-item.active {
-    background-color: #e6f3f2;
-    border-left-color: #00a49f;
-    color: #002f34;
-}
-
-.badge-new {
-    background-color: #ff5722;
-    color: white;
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    margin-left: 8px;
-}
-
-/* Content */
-.content {
-    flex: 1;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    padding: 25px;
-    min-height: 600px;
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* Стили для разных вкладок */
-.warning-box {
-    background-color: #fff3e0;
-    border-left: 4px solid #ff9800;
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    font-size: 13px;
-    color: #666;
-    border-radius: 4px;
-}
-
-.info-row {
+.profile-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.wallet-buttons {
-    display: flex;
     gap: 15px;
-    margin: 15px 0;
-}
-
-.btn-outline {
-    padding: 8px 16px;
-    background: white;
-    border: 1px solid #00a49f;
-    color: #00a49f;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.btn-primary {
-    padding: 8px 16px;
-    background: #00a49f;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.stat-card {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 40px;
-    color: #999;
-}
-
-.filter-tabs {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}
-
-.filter-tab {
-    padding: 8px 0;
-    cursor: pointer;
-    color: #666;
-}
-
-.filter-tab.active {
-    color: #00a49f;
-    border-bottom: 2px solid #00a49f;
-}
-
-.message-item {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-}
-
-.message-item:hover {
-    background: #f9f9f9;
-}
-
-.message-title {
-    font-weight: 600;
-}
-
-.message-preview {
-    font-size: 13px;
-    color: #666;
-    margin-top: 5px;
-}
-
-.message-date {
-    font-size: 11px;
-    color: #999;
-    margin-top: 5px;
-}
-
-/* Формы */
-.form-group {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e1e4e6;
     margin-bottom: 20px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-.form-group input, .form-group textarea, .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-/* Мобильная версия */
-.menu-toggle {
-    display: none;
-    background: #00a49f;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .cabinet-container {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        display: none;
-    }
-    .sidebar.open {
-        display: block;
-    }
-    .menu-toggle {
-        display: block;
-        margin-bottom: 15px;
-    }
-}
-/* Стилі для кабінету */
-.cabinet-container {
-    max-width: 1400px;
-    margin: 20px auto;
-    padding: 0 20px;
+.profile-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #002f34;
+    color: #fff;
     display: flex;
-    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.sidebar {
-    width: 260px;
-    flex-shrink: 0;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    overflow: hidden;
-}
-
-.sidebar-nav {
+.profile-info {
     display: flex;
     flex-direction: column;
 }
 
-.sidebar-link {
-    padding: 14px 20px;
+.profile-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #002f34;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-item {
+    display: block;
+    padding: 10px 0;
+    color: #002f34;
     text-decoration: none;
-    color: #333;
     font-size: 14px;
     font-weight: 500;
     transition: 0.2s;
-    border-left: 3px solid transparent;
 }
 
-.sidebar-link:hover {
-    background: #f5f5f5;
+.nav-item:hover, .nav-item.active {
+    color: #00a49f;
 }
 
-.sidebar-link.active {
-    background: #e6f3f2;
-    border-left-color: #00a49f;
-    color: #002f34;
+.nav-item.badge-new {
+    position: relative;
 }
 
-.badge {
-    background: #ff5722;
-    color: white;
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 10px;
+.nav-item.badge-new::after {
+    content: "НОВИНКА";
+    font-size: 9px;
+    color: #00a49f;
+    font-weight: bold;
     margin-left: 8px;
 }
 
-.cabinet-content {
-    flex: 1;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    padding: 25px;
+.nav-delivery span {
+    margin-right: 5px;
 }
 
-.cabinet-tab {
-    display: none;
+.favorites-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e1e4e6;
 }
 
-.cabinet-tab.active {
-    display: block;
-}
-
-.balance-card {
-    background: linear-gradient(135deg, #002f34, #004d54);
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
-
-.balance-buttons {
-    display: flex;
-    gap: 15px;
-    margin: 15px 0;
-}
-
-.btn-primary {
-    background: #ffce00;
-    color: #002f34;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-secondary {
-    background: transparent;
-    border: 1px solid #00a49f;
-    color: #00a49f;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.btn-small {
-    background: #00a49f;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.btn-small.danger {
-    background: #dc3545;
-}
-
-.btn-danger {
-    background: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.warning-message, .info-message {
-    background: #fff3cd;
-    border: 1px solid #ffecb3;
-    padding: 12px 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 13px;
-}
-
-.info-message {
-    background: #e8f4f3;
-    border-color: #c0e3e0;
-}
-
-.ad-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-.ad-item img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.ad-info {
-    flex: 1;
-}
-
-.ad-info h4 {
-    margin: 0 0 5px 0;
-}
-
-.ad-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.chat-message, .payment-item, .setting-item {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-}
-
-.chat-message:hover, .payment-item:hover {
-    background: #f9f9f9;
-}
-
-.chat-message.unread {
-    background: #fff8e1;
-    font-weight: 500;
-}
-
-.chat-name {
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.chat-text {
+.favorites-section h4 {
     font-size: 13px;
     color: #666;
-    margin-bottom: 5px;
-}
-
-.chat-date {
-    font-size: 11px;
-    color: #999;
-}
-
-.setting-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 50px;
-    color: #999;
-}
-
-.profile-form, .job-form {
-    max-width: 500px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
     margin-bottom: 8px;
-    font-weight: 500;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+.badge {
+    background-color: #e8ecee;
+    color: #333;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    float: right;
 }
 
-@media (max-width: 768px) {
-    .cabinet-container {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-    }
-    .balance-buttons {
-        flex-direction: column;
-    }
+.logout-section {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #e1e4e6;
+}
+
+.logout-item {
+    color: #666;
+}
+
+.logout-item:hover {
+    color: #d32f2f;
+}
+
+.cabinet-content {
+    flex-grow: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 30px;
+    min-height: 500px;
+}
+
+.cabinet-content h2 {
+    color: #002f34;
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e1e4e6;
+    padding-bottom: 15px;
+}
+
+.content-body {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
 }
