@@ -34,7 +34,7 @@ header {
 
 .search-box {
     display: flex;
-    width: 50%;
+    width: 40%;
 }
 
 .search-box input {
@@ -53,6 +53,38 @@ header {
     font-weight: bold;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#langSelect {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    background-color: #fff;
+    color: #002f34;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #fff;
+    color: #002f34;
 }
 
 .add-btn {
@@ -148,7 +180,7 @@ header {
     color: #999;
 }
 
-/* Стили для модального окна */
+/* Модальні вікна */
 .modal {
     display: none;
     position: fixed;
@@ -170,28 +202,188 @@ header {
     position: relative;
 }
 
+.auth-modal-content {
+    width: 420px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
 .close {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 24px;
     cursor: pointer;
+    color: #999;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Стилизация формы входа */
+.social-btn {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #333;
+    background: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.social-btn.facebook {
+    border-color: #1877f2;
+    color: #1877f2;
+}
+.social-btn.apple {
+    border-color: #000;
+    color: #000;
+}
+.social-btn.google {
+    border-color: #4285f4;
+    color: #4285f4;
+}
+
+.social-icon {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    color: #999;
+    font-size: 14px;
+}
+
+.divider::before, .divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: #ccc;
+}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+    width: 50%;
+    text-align: center;
+}
+
+.tab.active {
+    color: #002f34;
+    border-bottom: 2px solid #002f34;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: #666;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    padding-right: 35px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+}
+
+.forgot-password {
+    display: block;
+    font-size: 13px;
+    color: #002f34;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #002f34;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.submit-btn:hover {
+    background-color: #001f22;
+}
+
+.terms {
+    margin-top: 15px;
+    font-size: 11px;
+    text-align: center;
+    color: #666;
+}
+
+.terms a {
+    color: #002f34;
+    text-decoration: underline;
 }
 
 .modal-content form {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-.modal-content input, .modal-content textarea, .modal-content select {
+.modal-content select, .modal-content textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.modal-content button {
+.modal-content button[type="submit"] {
     background-color: #002f34;
     color: #fff;
     border: none;

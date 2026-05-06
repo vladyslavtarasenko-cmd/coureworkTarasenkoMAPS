@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FasTik — Доска объявлений</title>
+    <title>FasTik — Дошка оголошень</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,40 +12,95 @@
         <div class="header-container">
             <div class="logo">FasTik</div>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Поиск по объявлениям...">
-                <button onclick="searchAds()">Найти</button>
+                <input type="text" id="searchInput" placeholder="Пошук по оголошенням...">
+                <button id="headerSearchBtn" onclick="searchAds()">Знайти</button>
             </div>
-            <button class="add-btn" onclick="openModal()">+ Подать объявление</button>
+            <div class="header-right">
+                <select id="langSelect" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 UA</option>
+                    <option value="en">🇬🇧 EN</option>
+                </select>
+                <button id="headerLoginBtn" class="login-btn" onclick="openAuthModal()">Увійти</button>
+                <button id="headerAddBtn" class="add-btn" onclick="openModal()">+ Подати оголошення</button>
+            </div>
         </div>
     </header>
 
     <main class="container">
         <section class="categories">
-            <button class="active" onclick="filterCategory('all')">Все</button>
-            <button onclick="filterCategory('electronics')">Электроника</button>
-            <button onclick="filterCategory('transport')">Транспорт</button>
-            <button onclick="filterCategory('home')">Для дома</button>
+            <button id="catAll" class="active" onclick="filterCategory('all')">Всі</button>
+            <button id="catElectronics" onclick="filterCategory('electronics')">Електроніка</button>
+            <button id="catTransport" onclick="filterCategory('transport')">Транспорт</button>
+            <button id="catHome" onclick="filterCategory('home')">Для дому</button>
         </section>
 
         <div class="ads-grid" id="adsGrid">
             </div>
     </main>
 
+    <div id="authModal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            
+            <button class="social-btn facebook" onclick="socialAuth('Facebook')">
+                <span class="social-icon">f</span> <span id="authFacebook">Продовжити через Facebook</span>
+            </button>
+            <button class="social-btn apple" onclick="socialAuth('Apple')">
+                <span class="social-icon"></span> <span id="authApple">Продовжити через Apple</span>
+            </button>
+            <button class="social-btn google" onclick="socialAuth('Google')">
+                <span class="social-icon">G</span> <span id="authGoogle">Продовжити через Google</span>
+            </button>
+
+            <div class="divider">
+                <span id="authOr">ЧИ</span>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" id="authTabLogin" onclick="switchTab('login')">Увійти</div>
+                <div class="tab" id="authTabRegister" onclick="switchTab('register')">Зареєструватися</div>
+            </div>
+
+            <form id="authForm" onsubmit="handleAuthSubmit(event)">
+                <div class="form-group">
+                    <label id="authEmailLabel" for="authEmail">Електронна пошта чи телефон</label>
+                    <input type="text" id="authEmail" required placeholder="example@email.com або номер телефону">
+                </div>
+
+                <div class="form-group">
+                    <label id="authPasswordLabel" for="authPassword">Пароль</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="authPassword" required placeholder="Введіть пароль">
+                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                    </div>
+                </div>
+
+                <a href="#" id="authForgot" class="forgot-password" onclick="alert('Функція відновлення пароля')">Забули пароль?</a>
+
+                <button type="submit" id="authSubmitBtn" class="submit-btn">Увійти</button>
+            </form>
+
+            <p class="terms" id="authTerms">
+                Під час входу ви погоджуєтеся з нашими <a href="#">Умовами користування</a>.
+            </p>
+        </div>
+    </div>
+
     <div id="adModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Новое объявление</h2>
+            <h2 id="adModalTitle">Нове оголошення</h2>
             <form id="adForm" onsubmit="addAd(event)">
-                <input type="text" id="titleInput" placeholder="Название товара" required>
-                <input type="number" id="priceInput" placeholder="Цена (грн)" required>
-                <textarea id="descInput" placeholder="Описание товара" required></textarea>
+                <input type="text" id="titleInput" placeholder="Назва товару" required>
+                <input type="number" id="priceInput" placeholder="Ціна (грн)" required>
+                <textarea id="descInput" placeholder="Опис товару" required></textarea>
                 <select id="categoryInput">
-                    <option value="electronics">Электроника</option>
+                    <option value="electronics">Електроніка</option>
                     <option value="transport">Транспорт</option>
-                    <option value="home">Для дома</option>
+                    <option value="home">Для дому</option>
                 </select>
-                <input type="text" id="imageInput" placeholder="Ссылка на картинку (URL-адрес)">
-                <button type="submit">Опубликовать</button>
+                <input type="text" id="imageInput" placeholder="Посилання на картинку (URL-адрес)">
+                <button type="submit" id="adSubmitBtn">Опублікувати</button>
             </form>
         </div>
     </div>
