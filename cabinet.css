@@ -278,3 +278,244 @@ header {
         margin-bottom: 15px;
     }
 }
+/* Стилі для кабінету */
+.cabinet-container {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 30px;
+}
+
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-link {
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link:hover {
+    background: #f5f5f5;
+}
+
+.sidebar-link.active {
+    background: #e6f3f2;
+    border-left-color: #00a49f;
+    color: #002f34;
+}
+
+.badge {
+    background: #ff5722;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 8px;
+}
+
+.cabinet-content {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 25px;
+}
+
+.cabinet-tab {
+    display: none;
+}
+
+.cabinet-tab.active {
+    display: block;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #002f34, #004d54);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.balance-buttons {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.btn-primary {
+    background: #ffce00;
+    color: #002f34;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #00a49f;
+    color: #00a49f;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-small {
+    background: #00a49f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-small.danger {
+    background: #dc3545;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.warning-message, .info-message {
+    background: #fff3cd;
+    border: 1px solid #ffecb3;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.info-message {
+    background: #e8f4f3;
+    border-color: #c0e3e0;
+}
+
+.ad-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.ad-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.ad-info {
+    flex: 1;
+}
+
+.ad-info h4 {
+    margin: 0 0 5px 0;
+}
+
+.ad-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-message, .payment-item, .setting-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.chat-message:hover, .payment-item:hover {
+    background: #f9f9f9;
+}
+
+.chat-message.unread {
+    background: #fff8e1;
+    font-weight: 500;
+}
+
+.chat-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.chat-text {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.chat-date {
+    font-size: 11px;
+    color: #999;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+}
+
+.profile-form, .job-form {
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+    .cabinet-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .balance-buttons {
+        flex-direction: column;
+    }
+}

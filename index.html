@@ -8,17 +8,13 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <div class="logo">FasTik</div>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Пошук по оголошенням...">
-                <button id="headerSearchBtn" onclick="searchAds()">Знайти</button>
-            </div>
-  <div class="header-right">
-    <select id="langSelect" onchange="changeLanguage()">...</select>
+    <div class="header-right">
+    <select id="langSelect" onchange="changeLanguage()">
+        <option value="uk">🇺🇦 UA</option>
+        <option value="en">🇬🇧 EN</option>
+    </select>
     <button id="headerLoginBtn" class="login-btn" onclick="openAuthModal()">Увійти</button>
-    <a id="cabinetBtn" href="cabinet.html" class="cabinet-link" style="display: none;">👤 Мій кабінет</a>
+    <a href="cabinet.html" id="cabinetBtn" class="cabinet-btn" style="display: none;">👤 Мій кабінет</a>
     <button id="headerAddBtn" class="add-btn" onclick="openModal()">+ Подати оголошення</button>
 </div>
         </div>
