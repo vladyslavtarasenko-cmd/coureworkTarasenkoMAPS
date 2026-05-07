@@ -1,511 +1,83 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Налаштування — FasTik</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="settings.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-<!-- HEADER -->
-<header>
-    <div class="header-top">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">FasTik</a>
-                <span class="logo-dot">❤</span>
-            </div>
-            <div class="header-actions">
-                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
-                    <option value="uk">🇺🇦 Українська</option>
-                    <option value="ru">🇷🇺 Русский</option>
-                    <option value="en">🇬🇧 English</option>
-                </select>
-                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
-                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
-            </div>
-        </div>
+<div class="settings-container">
+    <div class="settings-header">
+        <h1>Налаштування</h1>
+        <p>Керуйте параметрами вашого акаунту</p>
     </div>
-</header>
 
-<!-- MAIN SETTINGS CONTAINER -->
-<main class="settings-container">
-    <div class="container">
-        <div class="settings-header">
-            <h1>Налаштування</h1>
-            <p>Керуйте параметрами вашого акаунту</p>
-        </div>
+    <div class="settings-wrapper">
+        <!-- ЛІВЕ МЕНЮ -->
+        <aside class="settings-sidebar">
+            <nav class="settings-nav">
+                <a href="#" class="settings-nav-item active" data-section="profile"><span class="nav-icon">👤</span> Профіль</a>
+                <a href="#" class="settings-nav-item" data-section="security"><span class="nav-icon">🔒</span> Безпека</a>
+                <a href="#" class="settings-nav-item" data-section="notifications"><span class="nav-icon">🔔</span> Сповіщення</a>
+                <a href="#" class="settings-nav-item" data-section="privacy"><span class="nav-icon">🛡️</span> Конфіденційність</a>
+                <a href="#" class="settings-nav-item" data-section="sessions"><span class="nav-icon">🌐</span> Активні сесії</a>
+                <a href="#" class="settings-nav-item" data-section="delete"><span class="nav-icon">🗑️</span> Видалення акаунту</a>
+            </nav>
+        </aside>
 
-        <div class="settings-wrapper">
-            <!-- ЛІВЕ МЕНЮ -->
-            <aside class="settings-sidebar">
-                <nav class="settings-nav">
-                    <a href="#" class="settings-nav-item active" data-section="profile">
-                        <span class="nav-icon">👤</span> Профіль
-                    </a>
-                    <a href="#" class="settings-nav-item" data-section="security">
-                        <span class="nav-icon">🔒</span> Безпека
-                    </a>
-                    <a href="#" class="settings-nav-item" data-section="notifications">
-                        <span class="nav-icon">🔔</span> Сповіщення
-                    </a>
-                    <a href="#" class="settings-nav-item" data-section="privacy">
-                        <span class="nav-icon">🛡️</span> Конфіденційність
-                    </a>
-                    <a href="#" class="settings-nav-item" data-section="payments">
-                        <span class="nav-icon">💳</span> Платні послуги
-                    </a>
-                    <a href="#" class="settings-nav-item" data-section="ads">
-                        <span class="nav-icon">📦</span> Налаштування оголошень
-                    </a>
-                    <a href="#" class="settings-nav-item" data-section="sessions">
-                        <span class="nav-icon">🌐</span> Активні сесії
-                    </a>
-                    <a href="#" class="settings-nav-item" data-section="delete">
-                        <span class="nav-icon">🗑️</span> Видалення акаунту
-                    </a>
-                </nav>
-            </aside>
-
-            <!-- ПРАВИЙ КОНТЕНТ -->
-            <div class="settings-content">
-                
-                <!-- Секція: Профіль -->
-                <div id="profileSection" class="settings-section active">
-                    <h2>Налаштування профілю</h2>
-                    
-                    <div class="setting-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Фото профілю</h3>
-                                <p>Змініть своє фото профілю</p>
-                            </div>
-                            <div class="setting-control">
-                                <div class="profile-photo-preview" id="profilePhotoPreview">В</div>
-                                <button class="setting-btn" onclick="openAvatarSettings()">Змінити</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Ім'я користувача</h3>
-                                <p>Як вас бачать інші користувачі</p>
-                            </div>
-                            <div class="setting-control">
-                                <input type="text" id="settingsUsername" class="settings-input" placeholder="username">
-                                <button class="setting-btn" onclick="saveUsername()">Зберегти</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Про себе</h3>
-                                <p>Коротка інформація про вас</p>
-                            </div>
-                            <div class="setting-control">
-                                <textarea id="settingsBio" rows="3" class="settings-textarea" placeholder="Розкажіть про себе..."></textarea>
-                                <button class="setting-btn" onclick="saveBio()">Зберегти</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Місцезнаходження</h3>
-                                <p>Ваше місто для локальних оголошень</p>
-                            </div>
-                            <div class="setting-control">
-                                <input type="text" id="settingsLocation" class="settings-input" placeholder="Київ">
-                                <button class="setting-btn" onclick="saveLocation()">Зберегти</button>
-                            </div>
-                        </div>
-                    </div>
+        <!-- ПРАВИЙ КОНТЕНТ -->
+        <div class="settings-content">
+            
+            <div id="profileSection" class="settings-section active">
+                <h2>Налаштування профілю</h2>
+                <div class="setting-group">
+                    <div class="setting-item"><div class="setting-info"><h3>Фото профілю</h3><p>Змініть своє фото</p></div><div class="setting-control"><div class="profile-photo-preview" id="profilePhotoPreview">В</div><button class="setting-btn" onclick="openAvatarSettings()">Змінити</button></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Ім'я користувача</h3><p>Як вас бачать інші</p></div><div class="setting-control"><input type="text" id="settingsUsername" class="settings-input"><button class="setting-btn" onclick="saveUsername()">Зберегти</button></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Місцезнаходження</h3><p>Ваше місто для оголошень</p></div><div class="setting-control"><input type="text" id="settingsLocation" class="settings-input"><button class="setting-btn" onclick="saveLocation()">Зберегти</button></div></div>
                 </div>
-
-                <!-- Секція: Безпека -->
-                <div id="securitySection" class="settings-section">
-                    <h2>Безпека акаунту</h2>
-                    
-                    <div class="setting-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Змінити пароль</h3>
-                                <p>Оновіть ваш пароль для входу</p>
-                            </div>
-                            <div class="setting-control">
-                                <button class="setting-btn" onclick="openPasswordModal()">Змінити пароль</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Змінити email</h3>
-                                <p>Електронна пошта для входу та сповіщень</p>
-                            </div>
-                            <div class="setting-control">
-                                <input type="email" id="settingsEmail" class="settings-input">
-                                <button class="setting-btn" onclick="saveEmail()">Зберегти</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Змінити номер телефону</h3>
-                                <p>Номер для зв'язку та підтвердження</p>
-                            </div>
-                            <div class="setting-control">
-                                <input type="tel" id="settingsPhone" class="settings-input" placeholder="+38 XXX XXX XXXX">
-                                <button class="setting-btn" onclick="savePhone()">Зберегти</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Двофакторна автентифікація</h3>
-                                <p>Додатковий рівень захисту вашого акаунту</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="twoFactorToggle">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Секція: Сповіщення -->
-                <div id="notificationsSection" class="settings-section">
-                    <h2>Сповіщення</h2>
-                    
-                    <div class="setting-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Push-сповіщення</h3>
-                                <p>Отримувати сповіщення в браузері</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="pushNotifications">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Email сповіщення</h3>
-                                <p>Отримувати листи на пошту</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="emailNotifications" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>СМС сповіщення</h3>
-                                <p>Отримувати СМС про важливі події</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="smsNotifications">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Нові повідомлення в чаті</h3>
-                                <p>Сповіщення про нові повідомлення</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="chatNotifications" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Нові відгуки</h3>
-                                <p>Коли хтось залишає відгук про вас</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="reviewNotifications" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Акції та новини</h3>
-                                <p>Отримувати інформацію про акції</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="promoNotifications">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Секція: Конфіденційність -->
-                <div id="privacySection" class="settings-section">
-                    <h2>Конфіденційність</h2>
-                    
-                    <div class="setting-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Приватний профіль</h3>
-                                <p>Тільки я можу бачити мої оголошення</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="privateProfile">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Приховати номер телефону</h3>
-                                <p>Номер телефону не буде видно в оголошеннях</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="hidePhone">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Хто може писати мені в чат</h3>
-                                <p>Обмеження для повідомлень</p>
-                            </div>
-                            <div class="setting-control">
-                                <select id="whoCanMessage" class="settings-select">
-                                    <option value="all">Всі користувачі</option>
-                                    <option value="verified">Тільки підтверджені</option>
-                                    <option value="none">Ніхто</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Показувати онлайн-статус</h3>
-                                <p>Інші будуть бачити коли ви онлайн</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="showOnlineStatus" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Секція: Платні послуги -->
-                <div id="paymentsSection" class="settings-section">
-                    <h2>Платні послуги</h2>
-                    
-                    <div class="setting-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Логотип та банер</h3>
-                                <p>Завантажте логотип для бізнес-акаунту</p>
-                            </div>
-                            <div class="setting-control">
-                                <button class="setting-btn" onclick="uploadLogo()">Завантажити</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Рахунки-фактури</h3>
-                                <p>Налаштування для отримання рахунків</p>
-                            </div>
-                            <div class="setting-control">
-                                <button class="setting-btn" onclick="setupInvoices()">Налаштувати</button>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Автоматизація</h3>
-                                <p>Автоматичне підняття оголошень</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="autoBoost">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Секція: Налаштування оголошень -->
-                <div id="adsSection" class="settings-section">
-                    <h2>Налаштування оголошень</h2>
-                    
-                    <div class="setting-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Автопродовження</h3>
-                                <p>Автоматичне продовження оголошень після закінчення терміну</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="autoRenew">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Модерація оголошень</h3>
-                                <p>Отримувати сповіщення про статус модерації</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="moderationAlerts" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h3>Підписка на категорії</h3>
-                                <p>Отримувати сповіщення про нові оголошення в обраних категоріях</p>
-                            </div>
-                            <div class="setting-control">
-                                <button class="setting-btn" onclick="setupCategorySubscription()">Налаштувати</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Секція: Активні сесії -->
-                <div id="sessionsSection" class="settings-section">
-                    <h2>Активні сесії</h2>
-                    <p class="section-desc">Пристрої, на яких виконано вхід у ваш акаунт</p>
-                    
-                    <div id="sessionsList" class="sessions-list">
-                        <div class="session-item current">
-                            <div class="session-icon">💻</div>
-                            <div class="session-info">
-                                <h4>Цей пристрій</h4>
-                                <p>Chrome на Windows</p>
-                                <span class="session-location">Київ, Україна</span>
-                                <span class="session-current">Поточний</span>
-                            </div>
-                        </div>
-                        <div class="session-item">
-                            <div class="session-icon">📱</div>
-                            <div class="session-info">
-                                <h4>iPhone 15 Pro</h4>
-                                <p>Safari на iOS</p>
-                                <span class="session-location">Київ, Україна</span>
-                                <span class="session-date">Остання активність: 2 дні тому</span>
-                            </div>
-                            <button class="session-logout" onclick="logoutSession(this)">Вийти</button>
-                        </div>
-                        <div class="session-item">
-                            <div class="session-icon">💻</div>
-                            <div class="session-info">
-                                <h4>MacBook Pro</h4>
-                                <p>Chrome на macOS</p>
-                                <span class="session-location">Львів, Україна</span>
-                                <span class="session-date">Остання активність: 5 днів тому</span>
-                            </div>
-                            <button class="session-logout" onclick="logoutSession(this)">Вийти</button>
-                        </div>
-                    </div>
-                    
-                    <button class="logout-all-btn" onclick="logoutAllDevices()">Вийти на всіх пристроях</button>
-                </div>
-
-                <!-- Секція: Видалення акаунту -->
-                <div id="deleteSection" class="settings-section">
-                    <h2>Видалення акаунту</h2>
-                    <div class="danger-zone">
-                        <div class="danger-icon">⚠️</div>
-                        <div class="danger-info">
-                            <h3>Небезпечна зона</h3>
-                            <p>Видалення акаунту є незворотним. Всі ваші дані, оголошення та історія будуть назавжди видалені.</p>
-                        </div>
-                        <button class="danger-btn" onclick="openDeleteConfirm()">Видалити акаунт</button>
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </div>
-</main>
 
-<!-- МОДАЛЬНЕ ВІКНО ДЛЯ ЗМІНИ ПАРОЛЯ -->
-<div id="passwordModal" class="modal">
-    <div class="modal-content modal-medium">
-        <span class="close" onclick="closeModal('passwordModal')">&times;</span>
-        <h3>Зміна паролю</h3>
-        <form onsubmit="changePassword(event)">
-            <div class="form-group">
-                <label>Поточний пароль</label>
-                <input type="password" id="currentPass" class="form-input" required>
+            <div id="securitySection" class="settings-section">
+                <h2>Безпека акаунту</h2>
+                <div class="setting-group">
+                    <div class="setting-item"><div class="setting-info"><h3>Змінити пароль</h3><p>Оновіть пароль</p></div><div class="setting-control"><button class="setting-btn" onclick="openPasswordModal()">Змінити пароль</button></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Змінити email</h3><p>Електронна пошта</p></div><div class="setting-control"><input type="email" id="settingsEmail" class="settings-input"><button class="setting-btn" onclick="saveEmail()">Зберегти</button></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Змінити телефон</h3><p>Номер для зв'язку</p></div><div class="setting-control"><input type="tel" id="settingsPhone" class="settings-input"><button class="setting-btn" onclick="savePhone()">Зберегти</button></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Двофакторна аутентифікація</h3><p>Додатковий захист</p></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="twoFactorToggle"><span class="toggle-slider"></span></label></div></div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Новий пароль</label>
-                <input type="password" id="newPass" class="form-input" required>
-            </div>
-            <div class="form-group">
-                <label>Підтвердіть новий пароль</label>
-                <input type="password" id="confirmPass" class="form-input" required>
-            </div>
-            <button type="submit" class="btn-primary" style="width: 100%;">Змінити пароль</button>
-        </form>
-    </div>
-</div>
 
-<!-- МОДАЛЬНЕ ВІКНО ДЛЯ ПІДТВЕРДЖЕННЯ ВИДАЛЕННЯ -->
-<div id="deleteConfirmModal" class="modal">
-    <div class="modal-content modal-small">
-        <span class="close" onclick="closeModal('deleteConfirmModal')">&times;</span>
-        <div class="delete-warning">
-            <div class="delete-icon">⚠️</div>
-            <h3>Ви впевнені?</h3>
-            <p>Видалення акаунту є незворотним. Всі ваші дані будуть назавжди видалені.</p>
-            <div class="form-group">
-                <label>Введіть ваш пароль для підтвердження</label>
-                <input type="password" id="deletePassword" class="form-input" placeholder="Ваш пароль">
+            <div id="notificationsSection" class="settings-section">
+                <h2>Сповіщення</h2>
+                <div class="setting-group">
+                    <div class="setting-item"><div class="setting-info"><h3>Push-сповіщення</h3></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="pushNotifications"><span class="toggle-slider"></span></label></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Email сповіщення</h3></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="emailNotifications" checked><span class="toggle-slider"></span></label></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>СМС сповіщення</h3></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="smsNotifications"><span class="toggle-slider"></span></label></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Нові повідомлення в чаті</h3></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="chatNotifications" checked><span class="toggle-slider"></span></label></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Нові відгуки</h3></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="reviewNotifications" checked><span class="toggle-slider"></span></label></div></div>
+                </div>
             </div>
-            <div class="confirm-buttons">
-                <button class="btn-secondary" onclick="closeModal('deleteConfirmModal')">Скасувати</button>
-                <button class="danger-btn" onclick="confirmDeleteAccount()">Назавжди видалити</button>
+
+            <div id="privacySection" class="settings-section">
+                <h2>Конфіденційність</h2>
+                <div class="setting-group">
+                    <div class="setting-item"><div class="setting-info"><h3>Приватний профіль</h3><p>Тільки я бачу мої оголошення</p></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="privateProfile"><span class="toggle-slider"></span></label></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Приховати номер телефону</h3></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="hidePhone"><span class="toggle-slider"></span></label></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Хто може писати мені</h3></div><div class="setting-control"><select id="whoCanMessage" class="settings-select"><option value="all">Всі</option><option value="verified">Підтверджені</option><option value="none">Ніхто</option></select></div></div>
+                    <div class="setting-item"><div class="setting-info"><h3>Показувати онлайн-статус</h3></div><div class="setting-control"><label class="toggle-switch"><input type="checkbox" id="showOnlineStatus" checked><span class="toggle-slider"></span></label></div></div>
+                </div>
+            </div>
+
+            <div id="sessionsSection" class="settings-section">
+                <h2>Активні сесії</h2>
+                <div id="sessionsList" class="sessions-list">
+                    <div class="session-item current"><div class="session-icon">💻</div><div class="session-info"><h4>Цей пристрій</h4><p>Chrome на Windows</p><span class="session-location">Київ, Україна</span><span class="session-current">Поточний</span></div></div>
+                    <div class="session-item"><div class="session-icon">📱</div><div class="session-info"><h4>iPhone 15 Pro</h4><p>Safari на iOS</p><span class="session-location">Київ, Україна</span><span class="session-date">2 дні тому</span></div><button class="session-logout" onclick="logoutSession(this)">Вийти</button></div>
+                </div>
+                <button class="logout-all-btn" onclick="logoutAllDevices()">Вийти на всіх пристроях</button>
+            </div>
+
+            <div id="deleteSection" class="settings-section">
+                <h2>Видалення акаунту</h2>
+                <div class="danger-zone"><div class="danger-icon">⚠️</div><div class="danger-info"><h3>Небезпечна зона</h3><p>Видалення акаунту є незворотним</p></div><button class="danger-btn" onclick="openDeleteConfirm()">Видалити акаунт</button></div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="script.js"></script>
-<script src="settings.js"></script>
-</body>
-</html>
+<!-- Модальні вікна -->
+<div id="passwordModal" class="modal" style="display:none"><div class="modal-content modal-medium"><span class="close" onclick="closeModal('passwordModal')">&times;</span><h3>Зміна паролю</h3><div class="form-group"><label>Поточний пароль</label><input type="password" id="currentPass" class="form-input"></div><div class="form-group"><label>Новий пароль</label><input type="password" id="newPass" class="form-input"></div><div class="form-group"><label>Підтвердіть</label><input type="password" id="confirmPass" class="form-input"></div><button class="btn-primary" onclick="changePassword()">Змінити пароль</button></div></div>
+
+<div id="deleteConfirmModal" class="modal" style="display:none"><div class="modal-content modal-small"><span class="close" onclick="closeModal('deleteConfirmModal')">&times;</span><div class="delete-warning"><div class="delete-icon">⚠️</div><h3>Ви впевнені?</h3><p>Видалення незворотне</p><div class="form-group"><label>Пароль</label><input type="password" id="deletePassword" class="form-input"></div><div class="confirm-buttons"><button class="btn-secondary" onclick="closeModal('deleteConfirmModal')">Скасувати</button><button class="danger-btn" onclick="confirmDeleteAccount()">Видалити</button></div></div></div></div>

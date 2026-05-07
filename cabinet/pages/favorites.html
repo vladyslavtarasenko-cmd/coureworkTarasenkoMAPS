@@ -1,99 +1,35 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Обрані — FasTik</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="favorites.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-<!-- HEADER -->
-<header>
-    <div class="header-top">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">FasTik</a>
-                <span class="logo-dot">❤</span>
-            </div>
-            <div class="header-actions">
-                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
-                    <option value="uk">🇺🇦 Українська</option>
-                    <option value="ru">🇷🇺 Русский</option>
-                    <option value="en">🇬🇧 English</option>
-                </select>
-                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
-                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
-            </div>
-        </div>
+<div class="favorites-container">
+    <div class="favorites-header">
+        <h1>Обрані</h1>
+        <p>Зберігайте цікаві оголошення та пошуки</p>
     </div>
-</header>
 
-<!-- MAIN FAVORITES CONTAINER -->
-<main class="favorites-container">
-    <div class="container">
-        <div class="favorites-header">
-            <h1>Обрані</h1>
-            <p>Зберігайте цікаві оголошення та пошуки</p>
-        </div>
-
-        <div class="favorites-tabs">
-            <button class="fav-tab active" data-tab="ads">
-                ❤️ Обрані оголошення
-                <span id="favAdsCount" class="tab-count">0</span>
-            </button>
-            <button class="fav-tab" data-tab="searches">
-                🔍 Збережені пошуки
-                <span id="favSearchesCount" class="tab-count">0</span>
-            </button>
-            <button class="fav-tab" data-tab="recent">
-                🕐 Недавно переглянуті
-                <span id="favRecentCount" class="tab-count">0</span>
-            </button>
-        </div>
-
-        <!-- Вкладка: Обрані оголошення -->
-        <div id="favoritesAds" class="fav-content active">
-            <div class="fav-actions">
-                <button class="btn-secondary" onclick="clearAllFavorites()">Очистити всі</button>
-            </div>
-            <div id="favoritesList" class="favorites-grid">
-                <!-- Динамічне завантаження -->
-            </div>
-        </div>
-
-        <!-- Вкладка: Збережені пошуки -->
-        <div id="favoritesSearches" class="fav-content">
-            <div id="savedSearchesList" class="saved-searches-list"></div>
-        </div>
-
-        <!-- Вкладка: Недавно переглянуті -->
-        <div id="favoritesRecent" class="fav-content">
-            <div class="fav-actions">
-                <button class="btn-secondary" onclick="clearAllRecent()">Очистити історію</button>
-            </div>
-            <div id="recentList" class="favorites-grid"></div>
-        </div>
+    <div class="favorites-tabs">
+        <button class="fav-tab active" data-tab="ads">❤️ Обрані оголошення <span id="favAdsCount" class="tab-count">0</span></button>
+        <button class="fav-tab" data-tab="searches">🔍 Збережені пошуки <span id="favSearchesCount" class="tab-count">0</span></button>
+        <button class="fav-tab" data-tab="recent">🕐 Недавно переглянуті <span id="favRecentCount" class="tab-count">0</span></button>
     </div>
-</main>
 
-<!-- Модальне вікно для збереженого пошуку -->
-<div id="saveSearchModal" class="modal">
-    <div class="modal-content modal-small">
-        <span class="close" onclick="closeModal('saveSearchModal')">&times;</span>
-        <h3>Зберегти пошук</h3>
-        <div class="form-group">
-            <label>Назва пошуку</label>
-            <input type="text" id="searchName" placeholder="Наприклад: iPhone до 15000 грн">
-        </div>
-        <div class="search-params" id="searchParams"></div>
-        <button class="btn-primary" onclick="saveCurrentSearch()">Зберегти</button>
+    <div id="favoritesAds" class="fav-content active">
+        <div class="fav-actions"><button class="btn-secondary" onclick="clearAllFavorites()">Очистити всі</button></div>
+        <div id="favoritesList" class="favorites-grid"></div>
+    </div>
+
+    <div id="favoritesSearches" class="fav-content">
+        <div id="savedSearchesList" class="saved-searches-list"></div>
+    </div>
+
+    <div id="favoritesRecent" class="fav-content">
+        <div class="fav-actions"><button class="btn-secondary" onclick="clearAllRecent()">Очистити історію</button></div>
+        <div id="recentList" class="favorites-grid"></div>
     </div>
 </div>
 
-<script src="script.js"></script>
-<script src="favorites.js"></script>
-</body>
-</html>
+<div id="saveSearchModal" class="modal" style="display:none">
+    <div class="modal-content modal-small">
+        <span class="close" onclick="closeModal('saveSearchModal')">&times;</span>
+        <h3>Зберегти пошук</h3>
+        <div class="form-group"><label>Назва пошуку</label><input type="text" id="searchName" placeholder="iPhone до 15000 грн"></div>
+        <button class="btn-primary" onclick="saveCurrentSearch()">Зберегти</button>
+    </div>
+</div>

@@ -1,23 +1,16 @@
-/* ========== ЧАТ - ОСНОВНІ СТИЛІ ========== */
+/* ========== ЧАТ - ПОВНА ВЕРСІЯ ========== */
 .chat-container {
-    background: #f5f5f5;
-    min-height: calc(100vh - 80px);
-    padding: 24px 0;
-}
-
-.chat-wrapper {
     display: flex;
+    height: calc(100vh - 200px);
+    min-height: 500px;
     background: white;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    height: calc(100vh - 140px);
-    min-height: 500px;
 }
 
-/* ========== ЛІВА ПАНЕЛЬ ========== */
+/* ЛІВА ПАНЕЛЬ */
 .chat-sidebar {
-    width: 360px;
+    width: 340px;
     border-right: 1px solid #eee;
     display: flex;
     flex-direction: column;
@@ -40,7 +33,7 @@
     margin-bottom: 16px;
 }
 
-.chat-tab {
+.chat-tab-btn {
     background: none;
     border: none;
     padding: 8px 0;
@@ -50,7 +43,7 @@
     position: relative;
 }
 
-.chat-tab.active {
+.chat-tab-btn.active {
     color: #00a49f;
     border-bottom: 2px solid #00a49f;
 }
@@ -79,7 +72,7 @@
     background: white;
 }
 
-/* Список чатів */
+/* СПИСОК ЧАТІВ */
 .chat-list {
     flex: 1;
     overflow-y: auto;
@@ -167,7 +160,7 @@
     flex-shrink: 0;
 }
 
-/* ========== ПРАВА ПАНЕЛЬ ========== */
+/* ПРАВА ПАНЕЛЬ */
 .chat-main {
     flex: 1;
     display: flex;
@@ -191,17 +184,7 @@
     opacity: 0.5;
 }
 
-.chat-placeholder h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-.chat-placeholder p {
-    color: #999;
-}
-
-/* Активний чат - заголовок */
+/* АКТИВНИЙ ЧАТ */
 .chat-header {
     padding: 16px 20px;
     background: white;
@@ -252,7 +235,7 @@
     padding: 8px;
 }
 
-/* Область повідомлень */
+/* ОБЛАСТЬ ПОВІДОМЛЕНЬ */
 .chat-messages-area {
     flex: 1;
     overflow-y: auto;
@@ -305,12 +288,7 @@
     padding: 0 8px;
 }
 
-.message-status {
-    font-size: 10px;
-    margin-left: 8px;
-}
-
-/* Форма відправки */
+/* ФОРМА ВІДПРАВКИ */
 .chat-input-area {
     padding: 16px 20px;
     background: white;
@@ -347,10 +325,6 @@
     justify-content: center;
 }
 
-.chat-send-btn:hover {
-    background: #007f7a;
-}
-
 .attach-btn {
     background: none;
     border: none;
@@ -360,27 +334,16 @@
     color: #999;
 }
 
-/* Модальне вікно */
-.modal-small {
-    max-width: 450px;
-}
-
-/* Адаптив */
+/* АДАПТИВ */
 @media (max-width: 768px) {
-    .chat-wrapper {
+    .chat-container {
         flex-direction: column;
         height: auto;
     }
-    
     .chat-sidebar {
         width: 100%;
         max-height: 300px;
     }
-    
-    .chat-main {
-        min-height: 400px;
-    }
-    
     .message {
         max-width: 85%;
     }

@@ -1,225 +1,110 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Пошук роботи — FasTik Work</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="job-search.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
+<div class="job-container">
+    <div class="job-header">
+        <h1>Знайдіть роботу мрії</h1>
+        <p id="jobsTotalCount">Завантаження...</p>
+    </div>
 
-<!-- HEADER -->
-<header>
-    <div class="header-top">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">FasTik</a>
-                <span class="logo-dot">❤</span>
-                <span class="logo-work">Work</span>
-            </div>
-            <div class="header-actions">
-                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
-                    <option value="uk">🇺🇦 Українська</option>
-                    <option value="ru">🇷🇺 Русский</option>
-                    <option value="en">🇬🇧 English</option>
-                </select>
-                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
-                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
-            </div>
+    <!-- Пошукова форма -->
+    <div class="job-search-form">
+        <div class="search-row">
+            <input type="text" id="jobSearchInput" placeholder="Посада, професія або ключові слова" class="search-input-large">
+            <input type="text" id="jobLocationInput" placeholder="Місто або область" class="search-input-medium">
+            <button class="search-btn-large" onclick="searchJobs()">Знайти роботу</button>
+        </div>
+        <div class="filter-row">
+            <select id="jobCategoryFilter" onchange="filterJobs()">
+                <option value="all">Всі категорії</option>
+                <option value="it">IT та Телекомунікації</option>
+                <option value="sales">Продажі</option>
+                <option value="admin">Адміністративна робота</option>
+                <option value="construction">Будівництво</option>
+                <option value="transport">Транспорт</option>
+                <option value="beauty">Краса та фітнес</option>
+                <option value="education">Освіта</option>
+                <option value="medicine">Медицина</option>
+            </select>
+            <select id="jobSalaryFilter" onchange="filterJobs()">
+                <option value="all">Будь-яка зарплата</option>
+                <option value="0-15000">до 15 000 грн</option>
+                <option value="15000-25000">15 000 - 25 000 грн</option>
+                <option value="25000-40000">25 000 - 40 000 грн</option>
+                <option value="40000+">від 40 000 грн</option>
+            </select>
+            <select id="jobExperienceFilter" onchange="filterJobs()">
+                <option value="all">Досвід роботи</option>
+                <option value="no">Без досвіду</option>
+                <option value="1-3">1-3 роки</option>
+                <option value="3-5">3-5 років</option>
+                <option value="5+">5+ років</option>
+            </select>
         </div>
     </div>
-</main>
 
-<!-- MAIN JOB SEARCH CONTAINER -->
-<main class="job-container">
-    <div class="container">
-        <div class="job-header">
-            <h1>Знайдіть роботу мрії</h1>
-            <p>14 532 вакансії по всій Україні</p>
-        </div>
-
-        <!-- Пошукова форма -->
-        <div class="job-search-form">
-            <div class="search-row">
-                <input type="text" id="jobSearchInput" placeholder="Посада, професія або ключові слова" class="search-input-large">
-                <input type="text" id="jobLocationInput" placeholder="Місто або область" class="search-input-medium">
-                <button class="search-btn-large" onclick="searchJobs()">Знайти роботу</button>
-            </div>
-            <div class="filter-row">
-                <select id="jobCategoryFilter" onchange="filterJobs()">
-                    <option value="all">Всі категорії</option>
-                    <option value="it">IT та Телекомунікації</option>
-                    <option value="sales">Продажі</option>
-                    <option value="admin">Адміністративна робота</option>
-                    <option value="construction">Будівництво</option>
-                    <option value="transport">Транспорт</option>
-                    <option value="beauty">Краса та фітнес</option>
-                    <option value="education">Освіта</option>
-                    <option value="medicine">Медицина</option>
-                </select>
-                <select id="jobSalaryFilter" onchange="filterJobs()">
-                    <option value="all">Будь-яка зарплата</option>
-                    <option value="0-15000">до 15 000 грн</option>
-                    <option value="15000-25000">15 000 - 25 000 грн</option>
-                    <option value="25000-40000">25 000 - 40 000 грн</option>
-                    <option value="40000+">від 40 000 грн</option>
-                </select>
-                <select id="jobExperienceFilter" onchange="filterJobs()">
-                    <option value="all">Досвід роботи</option>
-                    <option value="no">Без досвіду</option>
-                    <option value="1-3">1-3 роки</option>
-                    <option value="3-5">3-5 років</option>
-                    <option value="5+">5+ років</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="job-content-wrapper">
-            <!-- Ліва панель - Профіль кандидата -->
-            <div class="candidate-sidebar">
-                <div class="candidate-card">
-                    <div class="candidate-avatar">
-                        <div class="avatar-large" id="candidateAvatar">В</div>
-                        <button class="edit-avatar-btn" onclick="editAvatar()">✎</button>
-                    </div>
-                    <h3 id="candidateName">Владислав Тараненко</h3>
-                    <p class="candidate-title" id="candidateTitle">Junior Frontend Developer</p>
-                    <div class="candidate-location">📍 Київ, готовий до переїзду</div>
-                    <div class="candidate-contacts">
-                        <div>📧 vlad.tarasenko@example.com</div>
-                        <div>📱 +38 097 XXX XXXX</div>
-                    </div>
-                    <div class="candidate-stats">
-                        <div class="stat">
-                            <span class="stat-value" id="jobViewsCount">0</span>
-                            <span class="stat-label">переглядів резюме</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value" id="invitesCount">0</span>
-                            <span class="stat-label">запрошень</span>
-                        </div>
-                    </div>
+    <div class="job-content-wrapper">
+        <!-- Ліва панель - Профіль кандидата -->
+        <div class="candidate-sidebar">
+            <div class="candidate-card">
+                <div class="candidate-avatar">
+                    <div class="avatar-large" id="candidateAvatar">В</div>
+                    <button class="edit-avatar-btn" onclick="editAvatar()">✎</button>
                 </div>
-
-                <div class="quick-actions">
-                    <button class="action-btn" onclick="openResumeModal()">📄 Створити резюме</button>
-                    <button class="action-btn" onclick="showJobAlerts()">🔔 Налаштувати сповіщення</button>
-                    <button class="action-btn" onclick="viewSavedJobs()">⭐ Збережені вакансії</button>
-                </div>
-
-                <div class="job-alerts">
-                    <h4>Підписки на вакансії</h4>
-                    <div id="jobAlertsList" class="alerts-list"></div>
+                <h3 id="candidateName">Владислав Тараненко</h3>
+                <p class="candidate-title" id="candidateTitle">Junior Frontend Developer</p>
+                <div class="candidate-location" id="candidateLocation">📍 Київ, готовий до переїзду</div>
+                <div class="candidate-stats">
+                    <div class="stat"><span class="stat-value" id="jobViewsCount">0</span><span class="stat-label">переглядів</span></div>
+                    <div class="stat"><span class="stat-value" id="invitesCount">0</span><span class="stat-label">запрошень</span></div>
                 </div>
             </div>
-
-            <!-- Права панель - Список вакансій -->
-            <div class="jobs-main">
-                <div class="jobs-header">
-                    <div class="jobs-count" id="jobsCount">Знайдено 156 вакансій</div>
-                    <div class="sort-select">
-                        <select id="sortJobs" onchange="sortAndRenderJobs()">
-                            <option value="date">За датою (нові)</option>
-                            <option value="salary-desc">За зарплатою (високі)</option>
-                            <option value="salary-asc">За зарплатою (низькі)</option>
-                            <option value="relevance">За релевантністю</option>
-                        </select>
-                    </div>
-                </div>
-                <div id="jobsList" class="jobs-list"></div>
-                <div class="pagination" id="jobsPagination"></div>
+            <div class="quick-actions">
+                <button class="action-btn" onclick="openResumeModal()">📄 Створити резюме</button>
+                <button class="action-btn" onclick="showJobAlerts()">🔔 Налаштувати сповіщення</button>
+                <button class="action-btn" onclick="viewSavedJobs()">⭐ Збережені вакансії</button>
             </div>
-        </div>
-    </div>
-</main>
-
-<!-- МОДАЛЬНЕ ВІКНО ДЛЯ СТВОРЕННЯ РЕЗЮМЕ -->
-<div id="resumeModal" class="modal">
-    <div class="modal-content modal-large">
-        <span class="close" onclick="closeModal('resumeModal')">&times;</span>
-        <h2>Створення резюме</h2>
-        
-        <div class="resume-steps">
-            <div class="step active" data-step="1">1. Основна інформація</div>
-            <div class="step" data-step="2">2. Досвід роботи</div>
-            <div class="step" data-step="3">3. Освіта</div>
-            <div class="step" data-step="4">4. Навички</div>
+            <div class="job-alerts"><h4>Підписки на вакансії</h4><div id="jobAlertsList" class="alerts-list"></div></div>
         </div>
 
-        <div id="resumeStep1" class="resume-step active">
-            <div class="form-group">
-                <label>Посада</label>
-                <input type="text" id="resumeTitle" placeholder="Наприклад: Frontend Developer">
+        <!-- Права панель - Список вакансій -->
+        <div class="jobs-main">
+            <div class="jobs-header">
+                <div class="jobs-count" id="jobsCount">Знайдено 0 вакансій</div>
+                <div class="sort-select"><select id="sortJobs" onchange="sortAndRenderJobs()"><option value="date">За датою (нові)</option><option value="salary-desc">За зарплатою (високі)</option><option value="salary-asc">За зарплатою (низькі)</option></select></div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Місто</label>
-                    <input type="text" id="resumeCity" placeholder="Київ">
-                </div>
-                <div class="form-group">
-                    <label>Готовність до переїзду</label>
-                    <select id="resumeRelocation">
-                        <option value="no">Не готовий</option>
-                        <option value="yes">Готовий</option>
-                        <option value="consider">Розглядаю</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Бажана зарплата (грн)</label>
-                    <input type="number" id="resumeSalary" placeholder="30000">
-                </div>
-                <div class="form-group">
-                    <label>Тип зайнятості</label>
-                    <select id="resumeEmployment">
-                        <option value="full">Повна зайнятість</option>
-                        <option value="part">Часткова зайнятість</option>
-                        <option value="remote">Віддалена робота</option>
-                        <option value="intern">Стажування</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Про себе</label>
-                <textarea id="resumeAbout" rows="4" placeholder="Розкажіть про себе, свої сильні сторони та досягнення..."></textarea>
-            </div>
-        </div>
-
-        <div id="resumeStep2" class="resume-step">
-            <div id="experienceList" class="experience-list"></div>
-            <button class="btn-secondary" onclick="addExperience()">+ Додати місце роботи</button>
-        </div>
-
-        <div id="resumeStep3" class="resume-step">
-            <div id="educationList" class="education-list"></div>
-            <button class="btn-secondary" onclick="addEducation()">+ Додати освіту</button>
-        </div>
-
-        <div id="resumeStep4" class="resume-step">
-            <div class="form-group">
-                <label>Ключові навички</label>
-                <input type="text" id="skillsInput" placeholder="JavaScript, React, HTML, CSS...">
-                <div id="skillsTags" class="skills-tags"></div>
-            </div>
-            <div class="form-group">
-                <label>Мови</label>
-                <div id="languagesList" class="languages-list"></div>
-                <button class="btn-secondary" onclick="addLanguage()">+ Додати мову</button>
-            </div>
-        </div>
-
-        <div class="form-actions">
-            <button class="btn-secondary" onclick="prevStep()" id="prevBtn" style="display: none;">Назад</button>
-            <button class="btn-primary" onclick="nextStep()" id="nextBtn">Далі</button>
-            <button class="btn-primary" onclick="saveResume()" id="submitBtn" style="display: none;">Зберегти резюме</button>
+            <div id="jobsList" class="jobs-list"></div>
+            <div class="pagination" id="jobsPagination"></div>
         </div>
     </div>
 </div>
 
-<script src="script.js"></script>
-<script src="job-search.js"></script>
-</body>
-</html>
+<!-- МОДАЛЬНЕ ВІКНО ДЛЯ РЕЗЮМЕ -->
+<div id="resumeModal" class="modal" style="display: none;">
+    <div class="modal-content modal-large">
+        <span class="close" onclick="closeModal('resumeModal')">&times;</span>
+        <h2>Створення резюме</h2>
+        <div class="resume-steps"><div class="step active" data-step="1">1. Основна інформація</div><div class="step" data-step="2">2. Досвід роботи</div><div class="step" data-step="3">3. Освіта</div><div class="step" data-step="4">4. Навички</div></div>
+        <div id="resumeStep1" class="resume-step active">
+            <div class="form-group"><label>Посада</label><input type="text" id="resumeTitle" placeholder="Frontend Developer"></div>
+            <div class="form-row"><div class="form-group"><label>Місто</label><input type="text" id="resumeCity" placeholder="Київ"></div><div class="form-group"><label>Готовність до переїзду</label><select id="resumeRelocation"><option value="no">Не готовий</option><option value="yes">Готовий</option><option value="consider">Розглядаю</option></select></div></div>
+            <div class="form-row"><div class="form-group"><label>Бажана зарплата</label><input type="number" id="resumeSalary" placeholder="30000"></div><div class="form-group"><label>Тип зайнятості</label><select id="resumeEmployment"><option value="full">Повна</option><option value="part">Часткова</option><option value="remote">Віддалена</option></select></div></div>
+            <div class="form-group"><label>Про себе</label><textarea id="resumeAbout" rows="4" placeholder="Розкажіть про себе..."></textarea></div>
+        </div>
+        <div id="resumeStep2" class="resume-step"><div id="experienceList" class="experience-list"></div><button class="btn-secondary" onclick="addExperience()">+ Додати місце роботи</button></div>
+        <div id="resumeStep3" class="resume-step"><div id="educationList" class="education-list"></div><button class="btn-secondary" onclick="addEducation()">+ Додати освіту</button></div>
+        <div id="resumeStep4" class="resume-step">
+            <div class="form-group"><label>Ключові навички</label><input type="text" id="skillsInput" placeholder="JavaScript, React, HTML"><div id="skillsTags" class="skills-tags"></div></div>
+            <div class="form-group"><label>Мови</label><div id="languagesList" class="languages-list"></div><button class="btn-secondary" onclick="addLanguage()">+ Додати мову</button></div>
+        </div>
+        <div class="form-actions"><button class="btn-secondary" onclick="prevStep()" id="prevBtn" style="display:none">Назад</button><button class="btn-primary" onclick="nextStep()" id="nextBtn">Далі</button><button class="btn-primary" onclick="saveResume()" id="submitBtn" style="display:none">Зберегти</button></div>
+    </div>
+</div>
+
+<!-- Модалка для сповіщень -->
+<div id="alertsModal" class="modal" style="display: none;">
+    <div class="modal-content modal-medium">
+        <span class="close" onclick="closeModal('alertsModal')">&times;</span>
+        <h3>Налаштування сповіщень</h3>
+        <div class="form-group"><label>Категорії для сповіщень</label><select id="alertCategory" class="form-select"><option value="all">Всі категорії</option><option value="it">IT</option><option value="sales">Продажі</option><option value="admin">Адміністративна</option></select></div>
+        <div class="form-group"><label>Місто</label><input type="text" id="alertCity" placeholder="Київ"></div>
+        <button class="btn-primary" onclick="saveAlertSettings()" style="width:100%">Зберегти сповіщення</button>
+    </div>
+</div>
