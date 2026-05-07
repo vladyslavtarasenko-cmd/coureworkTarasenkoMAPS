@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 // ========== ДАНІ ==========
 var currentUser = null;
 var jobs = [];
@@ -193,3 +196,5 @@ function editAvatar() {
 function closeModal(id) { const m = document.getElementById(id); if(m) m.style.display = 'none'; }
 
 initJobSearch();
+
+})();

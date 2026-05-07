@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 // ========== ЗАВАНТАЖЕННЯ ВКЛАДОК ==========
 function loadTab(tabName) {
     const contentDiv = document.getElementById('pageContent');
@@ -86,3 +89,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('userAvatar').textContent = (user.name || 'К')[0];
     }
 });
+})();

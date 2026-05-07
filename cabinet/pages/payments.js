@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 // ========== ДАНІ ==========
 var currentUser = null;
 var transactions = [];
@@ -362,3 +365,5 @@ function closeModal(modalId) { const modal = document.getElementById(modalId); i
 
 // ЗАПУСК
 initPayments();
+
+})();

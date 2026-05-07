@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 // ========== ДАНІ ==========
 var currentUser = null;
 var currentAvatar = null;
@@ -197,3 +200,5 @@ function showToast(msg, type = 'success') {
 function closeModal(id) { const m = document.getElementById(id); if(m) m.style.display = 'none'; }
 
 initProfile();
+
+})();

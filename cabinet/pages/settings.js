@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 var currentUser = null;
 
 function initSettings() {
@@ -149,3 +152,5 @@ function showToast(msg, type='success') {
 function closeModal(id) { let m = document.getElementById(id); if(m) m.style.display = 'none'; }
 
 initSettings();
+
+})();

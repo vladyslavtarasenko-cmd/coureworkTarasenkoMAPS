@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 // ========== ДАНІ ==========
 var allAds = [];
 var filteredAds = [];
@@ -291,3 +294,5 @@ function changeLanguage() {
         alert(`Мову змінено на ${select.options[select.selectedIndex].text}`);
     }
 }
+
+})();

@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 var favoriteAds = [];
 var savedSearches = [];
 var recentViews = [];
@@ -131,3 +134,5 @@ function closeModal(id) { let m=document.getElementById(id); if(m) m.style.displ
 function escapeHtml(t) { let d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
 
 initFavorites();
+
+})();

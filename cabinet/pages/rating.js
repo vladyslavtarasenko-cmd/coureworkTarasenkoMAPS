@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 // ========== ДАНІ ==========
 var currentUser = null;
 var givenRatings = [];
@@ -237,3 +240,5 @@ function closeModal(modalId) { const m = document.getElementById(modalId); if(m)
 
 // ЗАПУСК
 initRating();
+
+})();

@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 // ========== ЗМІННІ ==========
 let uploadedPhotos = [];
 let currentUser = null;
@@ -304,3 +307,5 @@ function changeLanguage() {
         alert(`Мову змінено на ${select.options[select.selectedIndex].text}`);
     }
 }
+
+})();

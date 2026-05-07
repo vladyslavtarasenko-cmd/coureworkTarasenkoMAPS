@@ -1,3 +1,6 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
 var notifications = [];
 var currentFilter = 'all';
 
@@ -90,3 +93,5 @@ function deleteNotification(id) {
     updateUnreadCount();
     renderNotifications();
 }
+
+})();

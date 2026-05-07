@@ -1,3 +1,7 @@
+(function() {
+    // ВЕСЬ КОД ФАЙЛУ ТУТ
+
+
 var myAds = [];
 
 function loadMyAds() {
@@ -51,3 +55,6 @@ function deleteAd(id) {
 }
 
 document.addEventListener('DOMContentLoaded', loadMyAds);
+
+
+})();
