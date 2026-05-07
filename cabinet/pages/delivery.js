@@ -1,3 +1,6 @@
+function initDelivery() {
+    // весь код...
+
 let currentUser = null;
 let salesOrders = [];
 let purchaseOrders = [];
@@ -131,5 +134,5 @@ function selectMethod(m) { alert(`Вибрано спосіб доставки`)
 function saveDeliverySettings() { let s = { defaultBranch: document.getElementById('defaultBranch')?.value, defaultIndex: document.getElementById('defaultIndex')?.value, deliveryPhone: document.getElementById('deliveryPhone')?.value }; localStorage.setItem('fastik_delivery_settings', JSON.stringify(s)); showToast('Налаштування збережено!'); }
 function showToast(m) { let t = document.createElement('div'); t.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#00a49f;color:#fff;padding:12px 20px;border-radius:8px;z-index:9999'; t.textContent = m; document.body.appendChild(t); setTimeout(()=>t.remove(),2000); }
 function closeModal(id) { let m = document.getElementById(id); if(m) m.style.display = 'none'; }
-
+}
 initDelivery();
