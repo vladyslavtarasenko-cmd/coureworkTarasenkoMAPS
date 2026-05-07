@@ -25,13 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     loadRatings();
     loadFavorites();
     loadRecentViews();
-    setupTabs();
-    setupFilters();
+    setupTabs();           // ← виклик перемикання вкладок
+    setupFilters();       // ← фільтри для оголошень
+    setupChatTabs();      // ← вкладки чату
+    setupPaymentTabs();   // ← вкладки платежів
 });
 
 // ========== ЗАВАНТАЖЕННЯ ДАНИХ ==========
 function loadData() {
-    // Завантаження з localStorage
     const savedUser = localStorage.getItem('fastik_user');
     if (savedUser) {
         const parsed = JSON.parse(savedUser);
@@ -179,6 +180,7 @@ function loadChats(filter = 'unread') {
 
 function setupChatTabs() {
     const tabs = document.querySelectorAll('.chat-tab');
+    if (tabs.length === 0) return;
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tabs.forEach(t => t.classList.remove('active'));
@@ -194,7 +196,8 @@ function openChat(id) {
         msg.read = true;
         localStorage.setItem('fastik_messages', JSON.stringify(userMessages));
         loadChats();
-        document.getElementById('chatBadge').textContent = userMessages.filter(m => !m.read).length;
+        const badge = document.getElementById('chatBadge');
+        if (badge) badge.textContent = userMessages.filter(m => !m.read).length;
     }
     alert(`Чат з ${msg.name}\nПовідомлення: ${msg.text}\n\n(Функція повного чату в розробці)`);
 }
@@ -202,6 +205,7 @@ function openChat(id) {
 // ========== ПЛАТЕЖІ ==========
 function loadPayments(type = 'history') {
     const container = document.getElementById('paymentsList');
+    if (!container) return;
     
     if (userPayments.length === 0 || type === 'invoices') {
         container.innerHTML = '<div class="empty-state">💰 Тут зберігатиметься вся історія ваших платежів на FasTik.</div>';
@@ -219,6 +223,7 @@ function loadPayments(type = 'history') {
 
 function setupPaymentTabs() {
     const tabs = document.querySelectorAll('.payment-tab');
+    if (tabs.length === 0) return;
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tabs.forEach(t => t.classList.remove('active'));
@@ -229,11 +234,11 @@ function setupPaymentTabs() {
 }
 
 function searchPayments() {
-    const query = document.getElementById('paymentSearch').value.toLowerCase();
-    const filtered = userPayments.filter(p => 
-        p.description.toLowerCase().includes(query)
-    );
+    const query = document.getElementById('paymentSearch')?.value.toLowerCase();
+    if (!query) return;
+    const filtered = userPayments.filter(p => p.description.toLowerCase().includes(query));
     const container = document.getElementById('paymentsList');
+    if (!container) return;
     container.innerHTML = filtered.map(p => `
         <div class="payment-item">
             <span>${p.date}</span>
@@ -246,13 +251,15 @@ function searchPayments() {
 // ========== РЕЙТИНГ ==========
 function loadRatings() {
     const container = document.getElementById('ratingsList');
-    container.innerHTML = '<div class="empty-state">⭐ Поки немає оцінок. Коли ви отримаєте посилку з FasTik Доставка, ви зможете оцінити продавця.</div>';
+    if (container) {
+        container.innerHTML = '<div class="empty-state">⭐ Поки немає оцінок. Коли ви отримаєте посилку з FasTik Доставка, ви зможете оцінити продавця.</div>';
+    }
 }
 
 // ========== ШУКАЮ РОБОТУ ==========
 function saveJobPreferences() {
-    const position = document.getElementById('desiredPosition').value;
-    const region = document.getElementById('desiredRegion').value;
+    const position = document.getElementById('desiredPosition')?.value;
+    const region = document.getElementById('desiredRegion')?.value;
     
     if (position || region) {
         localStorage.setItem('job_preferences', JSON.stringify({ position, region }));
@@ -264,10 +271,10 @@ function saveJobPreferences() {
 
 // ========== ПРОФІЛЬ ==========
 function saveProfile() {
-    currentUser.name = document.getElementById('profileName').value;
-    currentUser.email = document.getElementById('profileEmail').value;
-    currentUser.phone = document.getElementById('profilePhone').value;
-    currentUser.location = document.getElementById('profileLocation').value;
+    currentUser.name = document.getElementById('profileName')?.value || currentUser.name;
+    currentUser.email = document.getElementById('profileEmail')?.value || currentUser.email;
+    currentUser.phone = document.getElementById('profilePhone')?.value || currentUser.phone;
+    currentUser.location = document.getElementById('profileLocation')?.value || currentUser.location;
     
     localStorage.setItem('fastik_user', JSON.stringify(currentUser));
     updateUserUI();
@@ -333,7 +340,8 @@ function logoutAllDevices() {
 function loadFavorites() {
     const saved = localStorage.getItem('fastik_favorites');
     if (saved) userFavorites = JSON.parse(saved);
-    document.getElementById('favCount').textContent = userFavorites.length;
+    const favCount = document.getElementById('favCount');
+    if (favCount) favCount.textContent = userFavorites.length;
 }
 
 function loadRecentViews() {
@@ -341,26 +349,30 @@ function loadRecentViews() {
     if (saved) userRecentViews = JSON.parse(saved);
 }
 
-// ========== ПЕРЕМИКАННЯ ВКЛАДОК ==========
+// ========== ПЕРЕМИКАННЯ ВКЛАДОК (ГОЛОВНА ФУНКЦІЯ) ==========
 function setupTabs() {
     const links = document.querySelectorAll('.sidebar-link');
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const tabId = link.dataset.tab;
+            const tabId = link.getAttribute('data-tab');
             
+            if (!tabId) return;
+            
+            // Активний пункт меню
             links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
             
+            // Показати потрібну вкладку
             document.querySelectorAll('.cabinet-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            document.getElementById(tabId).classList.add('active');
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
         });
     });
-    
-    setupChatTabs();
-    setupPaymentTabs();
 }
 
 // ========== ВИХІД ==========
