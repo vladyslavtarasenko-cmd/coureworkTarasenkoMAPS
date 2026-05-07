@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Сповіщення — FasTik</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notifications.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="logo"><a href="index.html">FasTik</a><span class="logo-dot">❤</span></div>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
+                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="notifications-container">
+    <div class="container">
+        <div class="notifications-header">
+            <h1>Сповіщення</h1>
+            <button class="mark-all-read" onclick="markAllAsRead()">Позначити всі прочитаними</button>
+        </div>
+
+        <div class="notifications-tabs">
+            <button class="notif-tab active" data-tab="all">Всі</button>
+            <button class="notif-tab" data-tab="unread">Непрочитані <span id="unreadCount">0</span></button>
+            <button class="notif-tab" data-tab="messages">💬 Повідомлення</button>
+            <button class="notif-tab" data-tab="orders">📦 Замовлення</button>
+            <button class="notif-tab" data-tab="system">⚙️ Системні</button>
+        </div>
+
+        <div id="notificationsList" class="notifications-list"></div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script src="notifications.js"></script>
+</body>
+</html>

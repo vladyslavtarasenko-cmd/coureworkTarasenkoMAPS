@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Чат — FasTik</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">FasTik</a>
+                <span class="logo-dot">❤</span>
+            </div>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
+                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CHAT CONTAINER -->
+<main class="chat-container">
+    <div class="container">
+        <div class="chat-wrapper">
+            
+            <!-- ЛІВА ПАНЕЛЬ - СПИСОК ЧАТІВ -->
+            <div class="chat-sidebar">
+                <div class="chat-sidebar-header">
+                    <h2>Повідомлення</h2>
+                    <div class="chat-tabs">
+                        <button class="chat-tab active" data-filter="all">Всі</button>
+                        <button class="chat-tab" data-filter="unread">
+                            Непрочитані
+                            <span id="unreadCount" class="unread-badge">0</span>
+                        </button>
+                    </div>
+                    <div class="chat-search">
+                        <input type="text" id="chatSearch" placeholder="Пошук повідомлень...">
+                    </div>
+                </div>
+                <div class="chat-list" id="chatList">
+                    <!-- Список чатів буде завантажено з JS -->
+                </div>
+            </div>
+
+            <!-- ПРАВА ПАНЕЛЬ - АКТИВНИЙ ЧАТ -->
+            <div class="chat-main" id="chatMain">
+                <div class="chat-placeholder">
+                    <div class="placeholder-icon">💬</div>
+                    <h3>Виберіть чат</h3>
+                    <p>Натисніть на діалог, щоб почати спілкування</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- МОДАЛЬНЕ ВІКНО ДЛЯ НОВОГО ПОВІДОМЛЕННЯ -->
+<div id="newMessageModal" class="modal">
+    <div class="modal-content modal-small">
+        <span class="close" onclick="closeModal('newMessageModal')">&times;</span>
+        <h3>Нове повідомлення</h3>
+        <div class="form-group">
+            <label>Кому</label>
+            <input type="text" id="newMessageRecipient" placeholder="Ім'я користувача або email">
+        </div>
+        <div class="form-group">
+            <label>Повідомлення</label>
+            <textarea id="newMessageText" rows="4" placeholder="Введіть ваше повідомлення..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="sendNewMessage()">Відправити</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+/* ========== ПОШУК РОБОТИ - ОСНОВНІ СТИЛІ ========== */
+.job-container {
+    background: #f5f5f5;
+    min-height: calc(100vh - 80px);
+    padding: 32px 0;
+}
+
+.logo-work {
+    background: #ff5722;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.job-header {
+    margin-bottom: 28px;
+}
+
+.job-header h1 {
+    font-size: 32px;
+    color: #002f34;
+    margin-bottom: 8px;
+}
+
+.job-header p {
+    color: #666;
+}
+
+/* ========== ПОШУКОВА ФОРМА ========== */
+.job-search-form {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.search-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.search-input-large {
+    flex: 2;
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.search-input-medium {
+    flex: 1;
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.search-btn-large {
+    padding: 14px 32px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-btn-large:hover {
+    background: #e64a19;
+}
+
+.filter-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-row select {
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+/* ========== ЛІВА ПАНЕЛЬ - ПРОФІЛЬ ========== */
+.job-content-wrapper {
+    display: flex;
+    gap: 24px;
+}
+
+.candidate-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.candidate-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.candidate-avatar {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.avatar-large {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #002f34, #004d54);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: bold;
+    color: white;
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #ffce00;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.candidate-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.candidate-title {
+    color: #00a49f;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.candidate-location {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.candidate-contacts {
+    text-align: left;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.candidate-contacts div {
+    margin-bottom: 8px;
+}
+
+.candidate-stats {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #002f34;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #999;
+}
+
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    padding: 12px;
+    background: #f5f5f5;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.action-btn:hover {
+    background: #e8f4f3;
+    border-color: #00a49f;
+}
+
+.job-alerts {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.job-alerts h4 {
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.alert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.alert-item button {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+}
+
+/* ========== ПРАВА ПАНЕЛЬ - ВАКАНСІЇ ========== */
+.jobs-main {
+    flex: 1;
+}
+
+.jobs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.jobs-count {
+    color: #666;
+    font-size: 14px;
+}
+
+.sort-select select {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+}
+
+.jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.job-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.job-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.job-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.job-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #002f34;
+    margin-bottom: 4px;
+}
+
+.job-company {
+    color: #666;
+    font-size: 14px;
+}
+
+.job-salary {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff5722;
+}
+
+.job-details {
+    display: flex;
+    gap: 16px;
+    margin: 12px 0;
+    flex-wrap: wrap;
+}
+
+.job-detail {
+    font-size: 13px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.job-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.job-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.job-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.job-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.job-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+}
+
+.save-job-btn {
+    color: #ff5722;
+}
+
+.apply-btn {
+    background: #00a49f;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.apply-btn:hover {
+    background: #007f7a;
+}
+
+/* ========== РЕЗЮМЕ СТЕПИ ========== */
+.modal-large {
+    max-width: 700px;
+    width: 90%;
+}
+
+.resume-steps {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.step {
+    padding: 8px 16px;
+    background: #f5f5f5;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #999;
+}
+
+.step.active {
+    background: #002f34;
+    color: white;
+}
+
+.resume-step {
+    display: none;
+}
+
+.resume-step.active {
+    display: block;
+}
+
+.experience-item, .education-item {
+    background: #f9f9f9;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.remove-item {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.skill-tag {
+    background: #e8f4f3;
+    color: #002f34;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skill-tag button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #dc3545;
+}
+
+.language-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.language-item input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* ========== ПАГІНАЦІЯ ========== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background: #002f34;
+    color: white;
+    border-color: #002f34;
+}
+
+/* ========== АДАПТИВ ========== */
+@media (max-width: 900px) {
+    .job-content-wrapper {
+        flex-direction: column;
+    }
+    
+    .candidate-sidebar {
+        width: 100%;
+    }
+    
+    .search-row {
+        flex-direction: column;
+    }
+    
+    .search-input-large, .search-input-medium {
+        width: 100%;
+    }
+    
+    .search-btn-large {
+        width: 100%;
+    }
+    
+    .job-header-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

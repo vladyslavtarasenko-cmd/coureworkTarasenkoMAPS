@@ -1,0 +1,94 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "type": "credit",
+      "amount": 500,
+      "description": "Поповнення рахунку",
+      "method": "card",
+      "status": "success",
+      "date": "2025-04-10T10:30:00"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "type": "debit",
+      "amount": 150,
+      "description": "Платне оголошення - ТОП",
+      "method": "balance",
+      "status": "success",
+      "date": "2025-04-05T14:20:00"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "type": "bonus",
+      "amount": 50,
+      "description": "Бонус за реєстрацію",
+      "method": "system",
+      "status": "success",
+      "date": "2025-04-01T09:00:00"
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "type": "credit",
+      "amount": 300,
+      "description": "Поповнення рахунку",
+      "method": "card",
+      "status": "success",
+      "date": "2025-04-08T16:45:00"
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "type": "debit",
+      "amount": 299,
+      "description": "Пакет Преміум",
+      "method": "balance",
+      "status": "success",
+      "date": "2025-04-07T11:30:00"
+    }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "userId": 1,
+      "cardNumber": "**** **** **** 4242",
+      "cardType": "visa",
+      "expiry": "12/26",
+      "cardholderName": "VLADYSLAV T"
+    }
+  ],
+  "invoices": [
+    {
+      "id": 1,
+      "userId": 1,
+      "number": "INV-2025-0001",
+      "amount": 150,
+      "description": "ТОП оголошення",
+      "date": "2025-04-05",
+      "paid": true
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "number": "INV-2025-0002",
+      "amount": 299,
+      "description": "Пакет Преміум",
+      "date": "2025-04-07",
+      "paid": true
+    }
+  ],
+  "balance": {
+    "1": {
+      "balance": 400,
+      "bonus": 50
+    },
+    "2": {
+      "balance": 1,
+      "bonus": 0
+    }
+  }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Пошук та фільтри — FasTik</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="filters.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">FasTik</a>
+                <span class="logo-dot">❤</span>
+            </div>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                <button class="login-btn" onclick="openModal('authModal')">Увійти</button>
+                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN FILTERS CONTAINER -->
+<main class="filters-container">
+    <div class="container">
+        <div class="filters-layout">
+            
+            <!-- ЛІВА ПАНЕЛЬ - ФІЛЬТРИ -->
+            <aside class="filters-sidebar">
+                <div class="filter-header">
+                    <h3>Фільтри</h3>
+                    <button class="reset-filters" onclick="resetFilters()">Скинути всі</button>
+                </div>
+                
+                <form id="filtersForm">
+                    <!-- Категорія -->
+                    <div class="filter-group">
+                        <label class="filter-label">Категорія</label>
+                        <select id="filterCategory" class="filter-select" onchange="applyFilters()">
+                            <option value="all">Всі категорії</option>
+                            <option value="electronics">📱 Електроніка</option>
+                            <option value="transport">🚗 Транспорт</option>
+                            <option value="home">🏠 Дім і сад</option>
+                            <option value="job">💼 Робота</option>
+                            <option value="animals">🐾 Тварини</option>
+                            <option value="realty">🏢 Нерухомість</option>
+                            <option value="fashion">👗 Мода і стиль</option>
+                            <option value="hobby">🎮 Хобі, відпочинок і спорт</option>
+                            <option value="kids">🧸 Дитячий світ</option>
+                            <option value="free">🎁 Віддам безкоштовно</option>
+                        </select>
+                    </div>
+
+                    <!-- Підкатегорія -->
+                    <div class="filter-group" id="subcategoryGroup" style="display: none;">
+                        <label class="filter-label">Підкатегорія</label>
+                        <select id="filterSubcategory" class="filter-select" onchange="applyFilters()">
+                            <option value="all">Всі</option>
+                        </select>
+                    </div>
+
+                    <!-- Ціна -->
+                    <div class="filter-group">
+                        <label class="filter-label">Ціна</label>
+                        <div class="price-range">
+                            <input type="number" id="minPrice" placeholder="від" class="price-input" oninput="applyFilters()">
+                            <span>-</span>
+                            <input type="number" id="maxPrice" placeholder="до" class="price-input" oninput="applyFilters()">
+                        </div>
+                        <div class="price-checkboxes">
+                            <label><input type="checkbox" value="0" onchange="applyFilters()"> Безкоштовно</label>
+                            <label><input type="checkbox" value="negotiable" onchange="applyFilters()"> Договірна</label>
+                        </div>
+                    </div>
+
+                    <!-- Локація -->
+                    <div class="filter-group">
+                        <label class="filter-label">Місцезнаходження</label>
+                        <input type="text" id="filterLocation" class="filter-input" placeholder="Місто або область" oninput="applyFilters()">
+                    </div>
+
+                    <!-- Стан товару (для електроніки/транспорту) -->
+                    <div class="filter-group" id="conditionGroup">
+                        <label class="filter-label">Стан</label>
+                        <div class="filter-options">
+                            <label><input type="checkbox" value="new" onchange="applyFilters()"> Нове</label>
+                            <label><input type="checkbox" value="used" onchange="applyFilters()"> Вживане</label>
+                        </div>
+                    </div>
+
+                    <!-- Тільки з фото -->
+                    <div class="filter-group">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="withPhoto" onchange="applyFilters()">
+                            <span>Тільки з фото</span>
+                        </label>
+                    </div>
+
+                    <!-- Сортування -->
+                    <div class="filter-group">
+                        <label class="filter-label">Сортувати за</label>
+                        <select id="sortBy" class="filter-select" onchange="applyFilters()">
+                            <option value="date_desc">Нові спочатку</option>
+                            <option value="date_asc">Старі спочатку</option>
+                            <option value="price_asc">Ціна (низькі → високі)</option>
+                            <option value="price_desc">Ціна (високі → низькі)</option>
+                            <option value="popular">Популярні</option>
+                        </select>
+                    </div>
+                </form>
+
+                <!-- Активні фільтри -->
+                <div class="active-filters" id="activeFilters"></div>
+            </aside>
+
+            <!-- ПРАВА ПАНЕЛЬ - РЕЗУЛЬТАТИ -->
+            <div class="filters-results">
+                <div class="results-header">
+                    <div class="results-count" id="resultsCount">Знайдено 0 оголошень</div>
+                    <div class="results-view">
+                        <button class="view-btn active" data-view="grid" onclick="setView('grid')">📱</button>
+                        <button class="view-btn" data-view="list" onclick="setView('list')">📋</button>
+                    </div>
+                </div>
+                <div id="resultsGrid" class="results-grid"></div>
+                <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+                    <button class="load-more-btn" onclick="loadMore()">Завантажити ще</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script src="filters.js"></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+/* ========== СТВОРЕННЯ ОГОЛОШЕННЯ ========== */
+.create-ad-container {
+    background: #f5f5f5;
+    min-height: calc(100vh - 80px);
+    padding: 40px 0;
+}
+
+.form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.form-wrapper h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #002f34;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Секції форми */
+.form-section {
+    margin-bottom: 28px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-label.required::after {
+    content: " *";
+    color: #dc3545;
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.2s;
+    font-family: inherit;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #00a49f;
+    box-shadow: 0 0 0 3px rgba(0,164,159,0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+}
+
+/* Лічильник символів */
+.char-counter {
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+}
+
+/* Ціна */
+.price-input-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.price-input-group .form-input {
+    flex: 1;
+}
+
+.price-currency {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.price-options {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+}
+
+.price-options label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Фото завантаження */
+.photo-upload-area {
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #fafafa;
+}
+
+.photo-upload-area:hover {
+    border-color: #00a49f;
+    background: #f0fcfb;
+}
+
+.upload-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.upload-placeholder p {
+    margin: 0 0 4px 0;
+    font-weight: 500;
+}
+
+.upload-placeholder small {
+    color: #999;
+    font-size: 12px;
+}
+
+.photo-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.preview-image {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-photo {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* Характеристики */
+.specs-container {
+    background: #f9f9f9;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.spec-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.spec-row select, .spec-row input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #00a49f;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.help-text {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Кнопки */
+.form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 15px;
+}
+
+.btn-primary {
+    background: #002f34;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #004d54;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.btn-secondary:hover {
+    border-color: #002f34;
+    color: #002f34;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    .form-wrapper {
+        padding: 20px;
+    }
+    
+    .price-options {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .spec-row {
+        flex-direction: column;
+    }
+}

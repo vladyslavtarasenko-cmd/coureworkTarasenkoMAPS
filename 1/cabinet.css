@@ -1,0 +1,516 @@
+/* ========== КАБІНЕТ - ОСНОВНІ СТИЛІ ========== */
+.cabinet-wrapper {
+    background: #f5f5f5;
+    min-height: calc(100vh - 120px);
+    padding: 24px 0;
+}
+
+.cabinet-container {
+    display: flex;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========== БІЧНЕ МЕНЮ ========== */
+.cabinet-sidebar {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    overflow: hidden;
+    flex-shrink: 0;
+    height: fit-content;
+}
+
+.user-avatar {
+    text-align: center;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, #002f34 0%, #004d54 100%);
+    color: white;
+}
+
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background: #ffce00;
+    color: #002f34;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0 auto 12px;
+}
+
+.user-avatar h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.user-avatar p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link:hover {
+    background: #f5f5f5;
+}
+
+.sidebar-link.active {
+    background: #e6f3f2;
+    border-left-color: #00a49f;
+    color: #002f34;
+}
+
+.sidebar-link .icon {
+    font-size: 20px;
+    width: 24px;
+}
+
+.sidebar-link .badge {
+    background: #ff5722;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+
+.sidebar-link .badge.new {
+    background: #00a49f;
+}
+
+/* ========== ОСНОВНИЙ КОНТЕНТ ========== */
+.cabinet-content {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.cabinet-tab {
+    display: none;
+}
+
+.cabinet-tab.active {
+    display: block;
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.tab-header h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.btn-create {
+    background: #ffce00;
+    color: #002f34;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-create:hover {
+    background: #e6b800;
+}
+
+/* ========== БАЛАНС КАРТКА ========== */
+.balance-card {
+    background: linear-gradient(135deg, #002f34 0%, #004d54 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.balance-info {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.balance-info strong {
+    font-size: 20px;
+    color: #ffce00;
+}
+
+.balance-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background: #ffce00;
+    color: #002f34;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #00a49f;
+    color: #00a49f;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.info-link {
+    color: #ffce00;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* ========== ПОПЕРЕДЖЕННЯ ========== */
+.warning-message {
+    background: #fff3cd;
+    border-left: 4px solid #ff9800;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #856404;
+}
+
+.info-message {
+    background: #e8f4f3;
+    border-left: 4px solid #00a49f;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+/* ========== ФІЛЬТРИ ОГОЛОШЕНЬ ========== */
+.ads-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #666;
+    font-weight: 500;
+    border-radius: 20px;
+}
+
+.filter-btn.active {
+    background: #002f34;
+    color: white;
+}
+
+/* ========== СПИСОК ОГОЛОШЕНЬ ========== */
+.ads-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ad-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.ad-item:hover {
+    background: #f0f0f0;
+}
+
+.ad-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.ad-info {
+    flex: 1;
+}
+
+.ad-info h4 {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+}
+
+.ad-info p {
+    margin: 0;
+    color: #00a49f;
+    font-weight: bold;
+}
+
+.ad-info small {
+    color: #999;
+    font-size: 11px;
+}
+
+.ad-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-small.danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-small.danger:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* ========== ЧАТ ========== */
+.chat-tabs, .payment-tabs, .rating-tabs, .delivery-tabs, .favorites-tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.chat-tab, .payment-tab, .rating-tab, .delivery-tab, .favorite-tab {
+    background: none;
+    border: none;
+    padding: 8px 0;
+    cursor: pointer;
+    color: #666;
+    font-weight: 500;
+}
+
+.chat-tab.active, .payment-tab.active, .rating-tab.active, .delivery-tab.active, .favorite-tab.active {
+    color: #00a49f;
+    border-bottom: 2px solid #00a49f;
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-message {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.chat-message:hover {
+    background: #f9f9f9;
+}
+
+.chat-message.unread {
+    background: #fff8e1;
+}
+
+.chat-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.chat-text {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.chat-date {
+    font-size: 11px;
+    color: #999;
+}
+
+/* ========== ПЛАТЕЖІ ========== */
+.payments-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.payments-search input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.payments-list, .ratings-list, .delivery-list, .favorites-list {
+    min-height: 200px;
+}
+
+.payment-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ========== НАЛАШТУВАННЯ ========== */
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* ========== ФОРМИ ========== */
+.profile-form, .job-form {
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 4px;
+    color: #999;
+    font-size: 11px;
+}
+
+.add-region {
+    margin-top: 8px;
+}
+
+/* ========== ПУСТИЙ СТАН ========== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+    font-size: 14px;
+}
+
+/* ========== АДАПТИВ ========== */
+@media (max-width: 900px) {
+    .cabinet-container {
+        flex-direction: column;
+    }
+    
+    .cabinet-sidebar {
+        width: 100%;
+    }
+    
+    .sidebar-nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 12px;
+    }
+    
+    .sidebar-link {
+        padding: 8px 12px;
+        border-radius: 20px;
+        border-left: none;
+    }
+    
+    .sidebar-link.active {
+        background: #002f34;
+        color: white;
+        border-left: none;
+    }
+    
+    .balance-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .ad-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ad-actions {
+        justify-content: center;
+    }
+}

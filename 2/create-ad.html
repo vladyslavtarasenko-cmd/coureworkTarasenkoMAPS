@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Створити оголошення — FasTik</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="create-ad.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">FasTik</a>
+                <span class="logo-dot">❤</span>
+            </div>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN FORM -->
+<main class="create-ad-container">
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>Створити оголошення</h1>
+            <p class="subtitle">Опишіть ваш товар у подробицях</p>
+
+            <form id="createAdForm" onsubmit="submitAd(event)">
+                <!-- НАЗВА -->
+                <div class="form-section">
+                    <label class="form-label required">Назва товару</label>
+                    <input type="text" id="adTitle" class="form-input" 
+                           placeholder="Наприклад: iPhone 12 128GB" required>
+                    <div class="char-counter">
+                        <span id="titleChars">0</span> / 150 символів
+                    </div>
+                </div>
+
+                <!-- КАТЕГОРІЯ -->
+                <div class="form-section">
+                    <label class="form-label required">Категорія</label>
+                    <select id="adCategory" class="form-select" required>
+                        <option value="">Оберіть категорію</option>
+                        <option value="electronics">📱 Електроніка</option>
+                        <option value="transport">🚗 Транспорт</option>
+                        <option value="home">🏠 Дім і сад</option>
+                        <option value="job">💼 Робота</option>
+                        <option value="animals">🐾 Тварини</option>
+                        <option value="realty">🏢 Нерухомість</option>
+                        <option value="fashion">👗 Мода і стиль</option>
+                        <option value="hobby">🎮 Хобі, відпочинок і спорт</option>
+                        <option value="kids">🧸 Дитячий світ</option>
+                        <option value="free">🎁 Віддам безкоштовно</option>
+                    </select>
+                </div>
+
+                <!-- ПІДКАТЕГОРІЯ -->
+                <div class="form-section" id="subcategorySection" style="display: none;">
+                    <label class="form-label">Підкатегорія</label>
+                    <select id="adSubcategory" class="form-select">
+                        <option value="">Оберіть підкатегорію</option>
+                    </select>
+                </div>
+
+                <!-- ФОТО -->
+                <div class="form-section">
+                    <label class="form-label">Фото</label>
+                    <div class="photo-upload-area" id="photoArea">
+                        <div class="photo-preview" id="photoPreview"></div>
+                        <div class="upload-placeholder" onclick="document.getElementById('photoInput').click()">
+                            <span class="upload-icon">📷</span>
+                            <p>Додати фото</p>
+                            <small>Перше фото буде на обкладинці</small>
+                        </div>
+                        <input type="file" id="photoInput" accept="image/*" multiple style="display: none" onchange="handlePhotos(this)">
+                    </div>
+                    <div id="photoList" class="photo-list"></div>
+                </div>
+
+                <!-- ХАРАКТЕРИСТИКИ (динамічні) -->
+                <div id="specsSection" class="form-section" style="display: none;">
+                    <label class="form-label">Характеристики товару</label>
+                    <div id="specsContainer" class="specs-container"></div>
+                </div>
+
+                <!-- ЦІНА -->
+                <div class="form-section">
+                    <label class="form-label required">Ціна</label>
+                    <div class="price-input-group">
+                        <input type="number" id="adPrice" class="form-input" placeholder="0" required>
+                        <span class="price-currency">грн</span>
+                    </div>
+                    <div class="price-options">
+                        <label><input type="checkbox" id="priceNegotiable"> Договірна</label>
+                        <label><input type="checkbox" id="priceExchange"> Обмін</label>
+                        <label><input type="checkbox" id="priceFree"> Безкоштовно</label>
+                    </div>
+                </div>
+
+                <!-- ОПИС -->
+                <div class="form-section">
+                    <label class="form-label required">Опис</label>
+                    <textarea id="adDescription" class="form-textarea" rows="6" 
+                              placeholder="Подумайте, що ви хотіли б дізнатися з оголошення. І додайте це в опис" required></textarea>
+                    <div class="char-counter">
+                        <span id="descChars">0</span> / 9000 символів
+                    </div>
+                </div>
+
+                <!-- ПРО ПРОДАВЦЯ -->
+                <div class="form-section">
+                    <label class="form-label required">Місцезнаходження</label>
+                    <input type="text" id="adLocation" class="form-input" placeholder="Київ, вул. Хрещатик" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Контактна особа</label>
+                    <input type="text" id="adContact" class="form-input" placeholder="Ваше ім'я">
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Номер телефону</label>
+                    <input type="tel" id="adPhone" class="form-input" placeholder="+38 XXX XXX XXXX">
+                </div>
+
+                <!-- НАЛАШТУВАННЯ ОГОЛОШЕННЯ -->
+                <div class="form-section">
+                    <label class="form-label">Автопродовження</label>
+                    <div class="toggle-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="autoRenew">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="toggle-label">Показ оголошення буде автоматично продовжуватися після закінчення терміну</span>
+                    </div>
+                    <small class="help-text">Оголошення активні протягом 30 днів</small>
+                </div>
+
+                <!-- КНОПКИ -->
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="window.location.href='index.html'">Скасувати</button>
+                    <button type="submit" class="btn-primary">Опублікувати</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script src="create-ad.js"></script>
+</body>
+</html>

@@ -2,60 +2,159 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FasTik — Дошка оголошень</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>FasTik - дошка оголошень України</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <div class="logo">FasTik</div>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Пошук по оголошенням...">
-                <button id="headerSearchBtn" onclick="searchAds()">Знайти</button>
+<!-- HEADER -->
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">FasTik</a>
+                <span class="logo-dot">❤</span>
             </div>
-            <div class="header-right">
-                <select id="langSelect" onchange="changeLanguage()">
-                    <option value="uk">🇺🇦 UA</option>
-                    <option value="en">🇬🇧 EN</option>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-select">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="en">🇬🇧 English</option>
                 </select>
-                <button id="headerLoginBtn" class="login-btn" onclick="goToCabinet()">Увійти</button>
-                <button id="headerAddBtn" class="add-btn" onclick="openModal()">+ Подати оголошення</button>
+                <button class="login-btn" onclick="openModal('authModal')">Увійти</button>
+                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
             </div>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="categories">
-            <button id="catAll" class="active" onclick="filterCategory('all')">Всі</button>
-            <button id="catElectronics" onclick="filterCategory('electronics')">Електроніка</button>
-            <button id="catTransport" onclick="filterCategory('transport')">Транспорт</button>
-            <button id="catHome" onclick="filterCategory('home')">Для дому</button>
-        </section>
-
-        <div class="ads-grid" id="adsGrid"></div>
-    </main>
-
-    <div id="adModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="adModalTitle">Нове оголошення</h2>
-            <form id="adForm" onsubmit="addAd(event)">
-                <input type="text" id="titleInput" placeholder="Назва товару" required>
-                <input type="number" id="priceInput" placeholder="Ціна (грн)" required>
-                <textarea id="descInput" placeholder="Опис товару" required></textarea>
-                <select id="categoryInput">
-                    <option value="electronics">Електроніка</option>
-                    <option value="transport">Транспорт</option>
-                    <option value="home">Для дому</option>
-                </select>
-                <input type="text" id="imageInput" placeholder="Посилання на картинку (URL-адрес)">
-                <button type="submit" id="adSubmitBtn">Опублікувати</button>
-            </form>
         </div>
     </div>
+    
+    <div class="header-bottom">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="globalSearch" placeholder="Знайти на FasTik" class="search-input">
+                <button class="search-btn" onclick="globalSearch()">Знайти</button>
+            </div>
+            <div class="location-select">
+                <span>📍 Київ</span>
+                <span class="chevron">▼</span>
+            </div>
+        </div>
+    </div>
+</header>
 
-    <script src="script.js"></script>
+<!-- HERO BANNER -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Продавай та купуй<br>на FasTik швидко та безпечно</h1>
+            <div class="hero-buttons">
+                <button class="hero-btn primary" onclick="window.location.href='create-ad.html'">Подати оголошення</button>
+                <button class="hero-btn secondary">Дізнатися більше</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAIN CATEGORIES -->
+<section class="categories-section">
+    <div class="container">
+        <h2 class="section-title">Всі категорії</h2>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Категорії будуть завантажені з JS -->
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED ADS -->
+<section class="featured-section">
+    <div class="container">
+        <h2 class="section-title">Рекомендовані оголошення</h2>
+        <div class="ads-grid" id="featuredAds"></div>
+    </div>
+</section>
+
+<!-- BUSINESS PROMO -->
+<section class="business-promo">
+    <div class="container">
+        <div class="promo-card">
+            <div class="promo-content">
+                <h3>Виділяйтеся як компанія!</h3>
+                <p>Перегляньте пропозицію FasTik для бізнесу</p>
+                <button class="promo-btn">Дізнатися більше</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ALL ADS -->
+<section class="all-ads-section">
+    <div class="container">
+        <h2 class="section-title">Усі оголошення</h2>
+        <div class="ads-grid" id="allAdsGrid"></div>
+        <button class="load-more" id="loadMoreBtn">Завантажити ще</button>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Мобільні додатки</h4>
+                <ul>
+                    <li><a href="#">iOS</a></li>
+                    <li><a href="#">Android</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Допомога</h4>
+                <ul>
+                    <li><a href="#">Допомога та зворотній зв'язок</a></li>
+                    <li><a href="#">Правила безпеки</a></li>
+                    <li><a href="#">Карта сайту</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Бізнес</h4>
+                <ul>
+                    <li><a href="#">Платні послуги</a></li>
+                    <li><a href="#">Бізнес на FasTik</a></li>
+                    <li><a href="#">Реклама на сайті</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Соціальні мережі</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Telegram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 FasTik. Всі права захищені. Усі онлайн-оголошення України на FasTik</p>
+        </div>
+    </div>
+</footer>
+
+<!-- МОДАЛЬНІ ВІКНА -->
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('authModal')">&times;</span>
+        <h2>Увійти або зареєструватися</h2>
+        <button class="social-btn google">Продовжити через Google</button>
+        <button class="social-btn facebook">Продовжити через Facebook</button>
+        <div class="divider">АБО</div>
+        <form onsubmit="handleLogin(event)">
+            <input type="email" id="loginEmail" placeholder="Електронна пошта або телефон" required>
+            <input type="password" id="loginPassword" placeholder="Пароль" required>
+            <button type="submit" class="submit-btn">Увійти</button>
+        </form>
+        <p class="terms">Продовжуючи, ви погоджуєтеся з <a href="#">Умовами користування</a></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

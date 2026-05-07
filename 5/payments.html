@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Платежі та рахунок — FasTik</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="payments.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">FasTik</a>
+                <span class="logo-dot">❤</span>
+            </div>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
+                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN PAYMENTS CONTAINER -->
+<main class="payments-container">
+    <div class="container">
+        <div class="payments-wrapper">
+            
+            <!-- ЛІВА ПАНЕЛЬ - БАЛАНС ТА МЕНЮ -->
+            <div class="payments-sidebar">
+                <div class="balance-card-large">
+                    <div class="balance-label">Ваш рахунок</div>
+                    <div class="balance-amount" id="mainBalance">0</div>
+                    <div class="balance-currency">грн</div>
+                    <div class="balance-bonus">Бонусів: <span id="bonusBalance">0</span></div>
+                    <div class="balance-actions">
+                        <button class="btn-primary" onclick="openTopupModal()">Поповнити</button>
+                        <button class="btn-secondary" onclick="openPackageModal()">Купити пакет</button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-menu">
+                    <a href="#" class="sidebar-menu-item active" data-page="history">
+                        <span class="icon">📋</span> Історія платежів
+                    </a>
+                    <a href="#" class="sidebar-menu-item" data-page="invoices">
+                        <span class="icon">📄</span> Електронні рахунки
+                    </a>
+                    <a href="#" class="sidebar-menu-item" data-page="bonus">
+                        <span class="icon">🎁</span> Бонуси та Повернення
+                    </a>
+                    <a href="#" class="sidebar-menu-item" data-page="packages">
+                        <span class="icon">📦</span> Платні послуги
+                    </a>
+                    <a href="#" class="sidebar-menu-item" data-page="cards">
+                        <span class="icon">💳</span> Мої карти
+                    </a>
+                </div>
+            </div>
+
+            <!-- ПРАВА ПАНЕЛЬ - КОНТЕНТ -->
+            <div class="payments-content">
+                
+                <!-- Історія платежів -->
+                <div id="historyPage" class="payments-page active">
+                    <div class="page-header">
+                        <h2>Історія платежів</h2>
+                        <div class="search-filter">
+                            <input type="text" id="paymentSearch" placeholder="Пошук платежів..." oninput="searchPayments()">
+                            <select id="paymentFilter" onchange="filterPayments()">
+                                <option value="all">Всі</option>
+                                <option value="credit">Поповнення</option>
+                                <option value="debit">Списання</option>
+                                <option value="bonus">Бонуси</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="paymentsList" class="payments-list"></div>
+                    <div class="pagination" id="paymentsPagination"></div>
+                </div>
+
+                <!-- Електронні рахунки -->
+                <div id="invoicesPage" class="payments-page">
+                    <div class="page-header">
+                        <h2>Електронні рахунки</h2>
+                        <button class="btn-secondary" onclick="downloadAllInvoices()">Завантажити всі</button>
+                    </div>
+                    <div id="invoicesList" class="invoices-list"></div>
+                </div>
+
+                <!-- Бонуси та Повернення -->
+                <div id="bonusPage" class="payments-page">
+                    <div class="page-header">
+                        <h2>Бонуси та Повернення</h2>
+                    </div>
+                    <div class="bonus-stats">
+                        <div class="bonus-card">
+                            <div class="bonus-icon">🎁</div>
+                            <div class="bonus-info">
+                                <div class="bonus-label">Доступно бонусів</div>
+                                <div class="bonus-amount" id="bonusAmount">0</div>
+                            </div>
+                        </div>
+                        <div class="bonus-card">
+                            <div class="bonus-icon">🔄</div>
+                            <div class="bonus-info">
+                                <div class="bonus-label">Бонусів нараховано всього</div>
+                                <div class="bonus-amount" id="totalBonusEarned">0</div>
+                            </div>
+                        </div>
+                        <div class="bonus-card">
+                            <div class="bonus-icon">⭐</div>
+                            <div class="bonus-info">
+                                <div class="bonus-label">Бонусів використано</div>
+                                <div class="bonus-amount" id="totalBonusUsed">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bonusHistoryList" class="bonus-history-list"></div>
+                </div>
+
+                <!-- Платні послуги (Пакети) -->
+                <div id="packagesPage" class="payments-page">
+                    <div class="page-header">
+                        <h2>Платні послуги</h2>
+                        <p>Просувайте свої оголошення та отримуйте більше переглядів</p>
+                    </div>
+                    <div class="packages-grid" id="packagesGrid"></div>
+                </div>
+
+                <!-- Мої карти -->
+                <div id="cardsPage" class="payments-page">
+                    <div class="page-header">
+                        <h2>Мої карти</h2>
+                        <button class="btn-primary" onclick="addNewCard()">+ Додати нову карту</button>
+                    </div>
+                    <div id="cardsList" class="cards-list"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- МОДАЛЬНЕ ВІКНО ДЛЯ ПОПОВНЕННЯ -->
+<div id="topupModal" class="modal">
+    <div class="modal-content modal-medium">
+        <span class="close" onclick="closeModal('topupModal')">&times;</span>
+        <h3>Поповнення рахунку</h3>
+        <div class="form-group">
+            <label>Сума поповнення</label>
+            <div class="amount-buttons">
+                <button type="button" class="amount-btn" onclick="setAmount(100)">100 грн</button>
+                <button type="button" class="amount-btn" onclick="setAmount(200)">200 грн</button>
+                <button type="button" class="amount-btn" onclick="setAmount(500)">500 грн</button>
+                <button type="button" class="amount-btn" onclick="setAmount(1000)">1000 грн</button>
+            </div>
+            <input type="number" id="topupAmount" placeholder="Введіть суму" class="form-input">
+        </div>
+        <div class="form-group">
+            <label>Спосіб оплати</label>
+            <select id="paymentMethod" class="form-select">
+                <option value="card">💳 Банківська карта</option>
+                <option value="google">🔵 Google Pay</option>
+                <option value="apple">🍎 Apple Pay</option>
+                <option value="privat24">🏦 Приват24</option>
+                <option value="mono">💜 Monobank</option>
+            </select>
+        </div>
+        <div id="cardSelect" class="form-group" style="display: none;">
+            <label>Виберіть карту</label>
+            <select id="savedCards" class="form-select"></select>
+        </div>
+        <button class="btn-primary" onclick="processTopup()" style="width: 100%;">Поповнити</button>
+    </div>
+</div>
+
+<!-- МОДАЛЬНЕ ВІКНО ДЛЯ КУПІВЛІ ПАКЕТУ -->
+<div id="packageModal" class="modal">
+    <div class="modal-content modal-medium">
+        <span class="close" onclick="closeModal('packageModal')">&times;</span>
+        <h3 id="packageName">Купівля пакету</h3>
+        <p id="packageDescription"></p>
+        <div class="package-price" id="packagePrice"></div>
+        <button class="btn-primary" onclick="buyPackage()" style="width: 100%;">Підтвердити покупку</button>
+    </div>
+</div>
+
+<!-- МОДАЛЬНЕ ВІКНО ДЛЯ ДОДАВАННЯ КАРТИ -->
+<div id="addCardModal" class="modal">
+    <div class="modal-content modal-medium">
+        <span class="close" onclick="closeModal('addCardModal')">&times;</span>
+        <h3>Додати нову карту</h3>
+        <div class="form-group">
+            <label>Номер карти</label>
+            <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" class="form-input" maxlength="19">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Термін дії</label>
+                <input type="text" id="cardExpiry" placeholder="MM/YY" class="form-input" maxlength="5">
+            </div>
+            <div class="form-group">
+                <label>CVV</label>
+                <input type="password" id="cardCvv" placeholder="***" class="form-input" maxlength="3">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Власник картки</label>
+            <input type="text" id="cardName" placeholder="ЯК ВКАЗАНО НА КАРТІ" class="form-input">
+        </div>
+        <button class="btn-primary" onclick="saveCard()" style="width: 100%;">Додати карту</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="payments.js"></script>
+</body>
+</html>

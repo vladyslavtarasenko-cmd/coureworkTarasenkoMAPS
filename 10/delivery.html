@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>FasTik Доставка — надійно та безпечно</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="delivery.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-top">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">FasTik</a>
+                <span class="logo-dot">❤</span>
+                <span class="logo-delivery">Доставка</span>
+            </div>
+            <div class="header-actions">
+                <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="en">🇬🇧 English</option>
+                </select>
+                <button class="login-btn" onclick="window.location.href='cabinet.html'">Мій кабінет</button>
+                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN DELIVERY CONTAINER -->
+<main class="delivery-container">
+    <div class="container">
+        <div class="delivery-header">
+            <h1>🚚 FasTik Доставка</h1>
+            <p>Продавайте та купуйте безпечно по всій Україні</p>
+        </div>
+
+        <div class="delivery-stats">
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalSales">0</div>
+                    <div class="stat-label">Успішних продажів</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="successRate">98%</div>
+                    <div class="stat-label">Успішність доставок</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="avgDelivery">2.5</div>
+                    <div class="stat-label">Середній час доставки (дні)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="delivery-tabs">
+            <button class="delivery-main-tab active" data-tab="sales">
+                📤 Мої продажі
+                <span id="salesCount" class="tab-badge">0</span>
+            </button>
+            <button class="delivery-main-tab" data-tab="purchases">
+                📥 Мої покупки
+                <span id="purchasesCount" class="tab-badge">0</span>
+            </button>
+            <button class="delivery-main-tab" data-tab="tracking">
+                🔍 Відстеження
+            </button>
+            <button class="delivery-main-tab" data-tab="methods">
+                📦 Способи доставки
+            </button>
+            <button class="delivery-main-tab" data-tab="settings">
+                ⚙️ Налаштування
+            </button>
+        </div>
+
+        <!-- ========== ВКЛАДКА: МОЇ ПРОДАЖІ ========== -->
+        <div id="salesTab" class="delivery-tab-content active">
+            <div class="delivery-filters">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">Всі</button>
+                    <button class="filter-btn" data-filter="pending">Очікують підтвердження</button>
+                    <button class="filter-btn" data-filter="waiting">Очікує відправки</button>
+                    <button class="filter-btn" data-filter="shipping">Доставка</button>
+                    <button class="filter-btn" data-filter="completed">Виконані</button>
+                    <button class="filter-btn" data-filter="cancelled">Відхилені</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="salesSearch" placeholder="Пошук за номером або товаром...">
+                    <button onclick="searchSales()">🔍</button>
+                </div>
+            </div>
+            <div id="salesList" class="orders-list"></div>
+            <div class="pagination" id="salesPagination"></div>
+        </div>
+
+        <!-- ========== ВКЛАДКА: МОЇ ПОКУПКИ ========== -->
+        <div id="purchasesTab" class="delivery-tab-content">
+            <div class="delivery-filters">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter-purchase="all">Всі</button>
+                    <button class="filter-btn" data-filter-purchase="pending">Очікують</button>
+                    <button class="filter-btn" data-filter-purchase="shipping">В дорозі</button>
+                    <button class="filter-btn" data-filter-purchase="completed">Отримані</button>
+                </div>
+            </div>
+            <div id="purchasesList" class="orders-list"></div>
+        </div>
+
+        <!-- ========== ВКЛАДКА: ВІДСТЕЖЕННЯ ========== -->
+        <div id="trackingTab" class="delivery-tab-content">
+            <div class="tracking-form">
+                <h3>Відстежити посилку</h3>
+                <div class="tracking-input-group">
+                    <input type="text" id="trackingNumber" placeholder="Введіть номер ТТН">
+                    <button class="btn-primary" onclick="trackOrder()">Відстежити</button>
+                </div>
+            </div>
+            <div id="trackingResult" class="tracking-result" style="display: none;"></div>
+        </div>
+
+        <!-- ========== ВКЛАДКА: СПОСОБИ ДОСТАВКИ ========== -->
+        <div id="methodsTab" class="delivery-tab-content">
+            <h3>Доступні способи доставки</h3>
+            <div class="delivery-methods-grid">
+                <div class="method-card" onclick="selectMethod('nova')">
+                    <div class="method-icon">📮</div>
+                    <div class="method-info">
+                        <h4>Нова Пошта</h4>
+                        <p>Доставка у відділення або поштомат</p>
+                        <div class="method-price">від 45 грн</div>
+                        <div class="method-time">1-3 дні</div>
+                    </div>
+                    <button class="method-select">Вибрати</button>
+                </div>
+                <div class="method-card" onclick="selectMethod('ukrposhta')">
+                    <div class="method-icon">🏤</div>
+                    <div class="method-info">
+                        <h4>Укрпошта</h4>
+                        <p>Доставка по всій Україні</p>
+                        <div class="method-price">від 35 грн</div>
+                        <div class="method-time">2-5 днів</div>
+                    </div>
+                    <button class="method-select">Вибрати</button>
+                </div>
+                <div class="method-card" onclick="selectMethod('courier')">
+                    <div class="method-icon">🚴</div>
+                    <div class="method-info">
+                        <h4>Кур'єрська доставка</h4>
+                        <p>Доставка додому або в офіс</p>
+                        <div class="method-price">від 70 грн</div>
+                        <div class="method-time">1-2 дні</div>
+                    </div>
+                    <button class="method-select">Вибрати</button>
+                </div>
+                <div class="method-card" onclick="selectMethod('meest')">
+                    <div class="method-icon">🚛</div>
+                    <div class="method-info">
+                        <h4>Meest Express</h4>
+                        <p>Експрес-доставка</p>
+                        <div class="method-price">від 55 грн</div>
+                        <div class="method-time">1-2 дні</div>
+                    </div>
+                    <button class="method-select">Вибрати</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ВКЛАДКА: НАЛАШТУВАННЯ ========== -->
+        <div id="settingsTab" class="delivery-tab-content">
+            <div class="delivery-settings">
+                <div class="setting-group">
+                    <h3>Налаштування доставки для продавців</h3>
+                    <div class="setting-item">
+                        <label>Відділення Нової Пошти за замовчуванням</label>
+                        <input type="text" id="defaultBranch" placeholder="№ відділення або адреса">
+                    </div>
+                    <div class="setting-item">
+                        <label>Індекс для Укрпошти</label>
+                        <input type="text" id="defaultIndex" placeholder="Поштовий індекс">
+                    </div>
+                    <div class="setting-item">
+                        <label>Контактний номер для доставки</label>
+                        <input type="tel" id="deliveryPhone" placeholder="+38 XXX XXX XXXX">
+                    </div>
+                    <button class="btn-primary" onclick="saveDeliverySettings()">Зберегти налаштування</button>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Автоматизація</h3>
+                    <div class="setting-item">
+                        <label>Автоматично підтверджувати замовлення</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="autoConfirm">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Сповіщення про нові замовлення</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="orderNotifications" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- МОДАЛЬНЕ ВІКНО ДЛЯ ПІДТВЕРДЖЕННЯ ЗАМОВЛЕННЯ -->
+<div id="confirmOrderModal" class="modal">
+    <div class="modal-content modal-medium">
+        <span class="close" onclick="closeModal('confirmOrderModal')">&times;</span>
+        <h3>Підтвердження замовлення</h3>
+        <div id="confirmOrderInfo"></div>
+        <div class="form-group">
+            <label>Спосіб доставки</label>
+            <select id="confirmDeliveryMethod" class="form-select">
+                <option value="nova">Нова Пошта</option>
+                <option value="ukrposhta">Укрпошта</option>
+                <option value="courier">Кур'єр</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Відділення / Адреса</label>
+            <input type="text" id="confirmAddress" class="form-input" placeholder="№ відділення або адреса">
+        </div>
+        <div class="confirm-buttons">
+            <button class="btn-secondary" onclick="closeModal('confirmOrderModal')">Скасувати</button>
+            <button class="btn-primary" onclick="confirmOrder()">Підтвердити</button>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНЕ ВІКНО ДЛЯ ВВЕДЕННЯ ТТН -->
+<div id="ttnModal" class="modal">
+    <div class="modal-content modal-small">
+        <span class="close" onclick="closeModal('ttnModal')">&times;</span>
+        <h3>Введіть номер ТТН</h3>
+        <input type="text" id="ttnNumber" class="form-input" placeholder="Номер накладної">
+        <div class="confirm-buttons" style="margin-top: 20px;">
+            <button class="btn-secondary" onclick="closeModal('ttnModal')">Скасувати</button>
+            <button class="btn-primary" onclick="saveTTN()">Зберегти</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="delivery.js"></script>
+</body>
+</html>
