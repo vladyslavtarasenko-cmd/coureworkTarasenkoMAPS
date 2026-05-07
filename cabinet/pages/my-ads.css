@@ -1,0 +1,142 @@
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.tab-header h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.btn-create {
+    background: #ffce00;
+    color: #002f34;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #002f34 0%, #004d54 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.balance-info {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.balance-info strong {
+    font-size: 20px;
+    color: #ffce00;
+}
+
+.balance-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-primary {
+    background: #ffce00;
+    color: #002f34;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #00a49f;
+    color: #00a49f;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.ads-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #666;
+    border-radius: 20px;
+}
+
+.filter-btn.active {
+    background: #002f34;
+    color: white;
+}
+
+.ads-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ad-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.ad-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.ad-info {
+    flex: 1;
+}
+
+.ad-info h4 {
+    margin-bottom: 6px;
+}
+
+.ad-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-small.danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}

@@ -9,7 +9,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
     <div class="header-top">
         <div class="container">
@@ -23,8 +22,8 @@
                     <option value="ru">🇷🇺 Русский</option>
                     <option value="en">🇬🇧 English</option>
                 </select>
-                <button class="login-btn" onclick="openModal('authModal')">Увійти</button>
-                <button class="add-btn" onclick="window.location.href='create-ad.html'">+ Подати оголошення</button>
+                <button class="login-btn" onclick="window.location.href='cabinet.html'">Увійти</button>
+                <button class="add-btn" onclick="window.location.href='cabinet/pages/create-ad.html'">+ Подати оголошення</button>
             </div>
         </div>
     </div>
@@ -43,30 +42,25 @@
     </div>
 </header>
 
-<!-- HERO BANNER -->
 <section class="hero">
     <div class="container">
         <div class="hero-content">
             <h1>Продавай та купуй<br>на FasTik швидко та безпечно</h1>
             <div class="hero-buttons">
-                <button class="hero-btn primary" onclick="window.location.href='create-ad.html'">Подати оголошення</button>
+                <button class="hero-btn primary" onclick="window.location.href='cabinet/pages/create-ad.html'">Подати оголошення</button>
                 <button class="hero-btn secondary">Дізнатися більше</button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- MAIN CATEGORIES -->
 <section class="categories-section">
     <div class="container">
         <h2 class="section-title">Всі категорії</h2>
-        <div class="categories-grid" id="categoriesGrid">
-            <!-- Категорії будуть завантажені з JS -->
-        </div>
+        <div class="categories-grid" id="categoriesGrid"></div>
     </div>
 </section>
 
-<!-- FEATURED ADS -->
 <section class="featured-section">
     <div class="container">
         <h2 class="section-title">Рекомендовані оголошення</h2>
@@ -74,7 +68,6 @@
     </div>
 </section>
 
-<!-- BUSINESS PROMO -->
 <section class="business-promo">
     <div class="container">
         <div class="promo-card">
@@ -87,7 +80,6 @@
     </div>
 </section>
 
-<!-- ALL ADS -->
 <section class="all-ads-section">
     <div class="container">
         <h2 class="section-title">Усі оголошення</h2>
@@ -96,40 +88,24 @@
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="container">
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>Мобільні додатки</h4>
-                <ul>
-                    <li><a href="#">iOS</a></li>
-                    <li><a href="#">Android</a></li>
-                </ul>
+                <ul><li><a href="#">iOS</a></li><li><a href="#">Android</a></li></ul>
             </div>
             <div class="footer-col">
                 <h4>Допомога</h4>
-                <ul>
-                    <li><a href="#">Допомога та зворотній зв'язок</a></li>
-                    <li><a href="#">Правила безпеки</a></li>
-                    <li><a href="#">Карта сайту</a></li>
-                </ul>
+                <ul><li><a href="#">Допомога та зворотній зв'язок</a></li><li><a href="#">Правила безпеки</a></li><li><a href="#">Карта сайту</a></li></ul>
             </div>
             <div class="footer-col">
                 <h4>Бізнес</h4>
-                <ul>
-                    <li><a href="#">Платні послуги</a></li>
-                    <li><a href="#">Бізнес на FasTik</a></li>
-                    <li><a href="#">Реклама на сайті</a></li>
-                </ul>
+                <ul><li><a href="#">Платні послуги</a></li><li><a href="#">Бізнес на FasTik</a></li><li><a href="#">Реклама на сайті</a></li></ul>
             </div>
             <div class="footer-col">
                 <h4>Соціальні мережі</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Telegram</a></li>
-                </ul>
+                <ul><li><a href="#">Facebook</a></li><li><a href="#">Instagram</a></li><li><a href="#">Telegram</a></li></ul>
             </div>
         </div>
         <div class="footer-bottom">
@@ -138,7 +114,6 @@
     </div>
 </footer>
 
-<!-- МОДАЛЬНІ ВІКНА -->
 <div id="authModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('authModal')">&times;</span>
@@ -158,4 +133,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-...

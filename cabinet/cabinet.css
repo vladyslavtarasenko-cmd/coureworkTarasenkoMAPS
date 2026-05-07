@@ -1,0 +1,134 @@
+/* ========== КАБІНЕТ - ОСНОВНІ СТИЛІ ========== */
+.cabinet-wrapper {
+    background: #f5f5f5;
+    min-height: calc(100vh - 80px);
+    padding: 24px 0;
+}
+
+.cabinet-container {
+    display: flex;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.cabinet-sidebar {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    overflow: hidden;
+    flex-shrink: 0;
+    height: fit-content;
+}
+
+.user-avatar {
+    text-align: center;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, #002f34 0%, #004d54 100%);
+    color: white;
+}
+
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background: #ffce00;
+    color: #002f34;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0 auto 12px;
+}
+
+.user-avatar h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.user-avatar p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+}
+
+.sidebar-link:hover {
+    background: #f5f5f5;
+}
+
+.sidebar-link.active {
+    background: #e6f3f2;
+    border-left-color: #00a49f;
+    color: #002f34;
+}
+
+.sidebar-link .icon {
+    font-size: 20px;
+    width: 24px;
+}
+
+.cabinet-content {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    min-height: 500px;
+}
+
+.loading {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+}
+
+.error-message {
+    text-align: center;
+    padding: 50px;
+    color: #dc3545;
+}
+
+@media (max-width: 900px) {
+    .cabinet-container {
+        flex-direction: column;
+    }
+    .cabinet-sidebar {
+        width: 100%;
+    }
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .sidebar-link {
+        padding: 8px 12px;
+        border-left: none;
+        border-radius: 20px;
+    }
+    .sidebar-link.active {
+        background: #002f34;
+        color: white;
+        border-left: none;
+    }
+}

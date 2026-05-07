@@ -1,0 +1,23 @@
+<div class="tab-header">
+    <h2>Ваші оголошення</h2>
+    <button class="btn-create" onclick="window.location.href='cabinet/pages/create-ad.html'">+ Створити оголошення</button>
+</div>
+
+<div class="balance-card">
+    <div class="balance-info">
+        <div>Ваш рахунок: <strong id="userBalance">0</strong> грн.</div>
+        <div>Доступний баланс: <strong id="userBonus">0</strong> бонусів</div>
+    </div>
+    <div class="balance-buttons">
+        <button class="btn-primary" onclick="alert('Поповнення')">Поповнити гаманець</button>
+        <button class="btn-secondary" onclick="alert('Купити пакет')">Купити пакет</button>
+    </div>
+</div>
+
+<div class="ads-filters">
+    <button class="filter-btn active" data-filter="all">Всі</button>
+    <button class="filter-btn" data-filter="active">Активні</button>
+    <button class="filter-btn" data-filter="inactive">Неактивні</button>
+</div>
+
+<div id="myAdsList" class="ads-list"></div>
