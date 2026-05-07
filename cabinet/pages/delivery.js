@@ -1,6 +1,3 @@
-function initDelivery() {
-    // весь код...
-
 let currentUser = null;
 let salesOrders = [];
 let purchaseOrders = [];
@@ -42,9 +39,12 @@ function savePurchases() { localStorage.setItem('fastik_purchases', JSON.stringi
 
 function updateStats() {
     let completed = salesOrders.filter(o => o.status === 'completed').length;
-    document.getElementById('totalSales').textContent = completed;
-    document.getElementById('salesCount').textContent = salesOrders.filter(o => !['completed','cancelled'].includes(o.status)).length;
-    document.getElementById('purchasesCount').textContent = purchaseOrders.filter(o => o.status !== 'completed').length;
+    let totalSales = document.getElementById('totalSales');
+    let salesCount = document.getElementById('salesCount');
+    let purchasesCount = document.getElementById('purchasesCount');
+    if(totalSales) totalSales.textContent = completed;
+    if(salesCount) salesCount.textContent = salesOrders.filter(o => !['completed','cancelled'].includes(o.status)).length;
+    if(purchasesCount) purchasesCount.textContent = purchaseOrders.filter(o => o.status !== 'completed').length;
 }
 
 function setupTabs() {
@@ -54,7 +54,8 @@ function setupTabs() {
             document.querySelectorAll('.delivery-main-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.delivery-tab-content').forEach(c => c.classList.remove('active'));
             tab.classList.add('active');
-            document.getElementById(`${id}Tab`).classList.add('active');
+            let activeTab = document.getElementById(`${id}Tab`);
+            if(activeTab) activeTab.classList.add('active');
         });
     });
 }
@@ -85,7 +86,8 @@ function renderSales() {
     `).join('');
     let total = Math.ceil(filtered.length/itemsPerPage);
     let p = ''; for(let i=1;i<=total;i++) p += `<button class="${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
-    document.getElementById('salesPagination').innerHTML = p;
+    let paginationDiv = document.getElementById('salesPagination');
+    if(paginationDiv) paginationDiv.innerHTML = p;
 }
 
 function getSalesActions(order) {
@@ -97,10 +99,10 @@ function getSalesActions(order) {
 }
 
 function goToPage(p) { currentPage = p; renderSales(); }
-function openConfirmOrderModal(id) { currentOrderId = id; document.getElementById('confirmOrderModal').style.display = 'flex'; }
+function openConfirmOrderModal(id) { currentOrderId = id; let m = document.getElementById('confirmOrderModal'); if(m) m.style.display = 'flex'; }
 function confirmOrder() { let o = salesOrders.find(o=>o.id===currentOrderId); if(o){ o.status='waiting'; o.statusText='Очікує відправки'; saveSales(); renderSales(); updateStats(); } closeModal('confirmOrderModal'); }
-function openTTNModal(id) { currentOrderId = id; document.getElementById('ttnModal').style.display = 'flex'; }
-function saveTTN() { let ttn = document.getElementById('ttnNumber').value; let o = salesOrders.find(o=>o.id===currentOrderId); if(o && ttn){ o.status='shipping'; o.statusText='В дорозі'; o.ttn=ttn; saveSales(); renderSales(); updateStats(); } closeModal('ttnModal'); document.getElementById('ttnNumber').value=''; }
+function openTTNModal(id) { currentOrderId = id; let m = document.getElementById('ttnModal'); if(m) m.style.display = 'flex'; }
+function saveTTN() { let ttn = document.getElementById('ttnNumber')?.value; let o = salesOrders.find(o=>o.id===currentOrderId); if(o && ttn){ o.status='shipping'; o.statusText='В дорозі'; o.ttn=ttn; saveSales(); renderSales(); updateStats(); } closeModal('ttnModal'); if(document.getElementById('ttnNumber')) document.getElementById('ttnNumber').value=''; }
 function cancelOrder(id) { if(confirm('Скасувати замовлення?')){ let o = salesOrders.find(o=>o.id===id); if(o){ o.status='cancelled'; o.statusText='Відхилено'; saveSales(); renderSales(); updateStats(); } } }
 
 function searchSales() {
@@ -108,6 +110,7 @@ function searchSales() {
     if(!q) { renderSales(); return; }
     let filtered = salesOrders.filter(o => o.orderNumber.toLowerCase().includes(q) || o.product.toLowerCase().includes(q));
     let container = document.getElementById('salesList');
+    if(!container) return;
     if(filtered.length===0) { container.innerHTML = '<div class="empty-state">📦 Нічого не знайдено</div>'; return; }
     container.innerHTML = filtered.map(order => `<div class="order-card">${order.orderNumber} - ${order.product}</div>`).join('');
 }
@@ -126,6 +129,7 @@ function renderPurchases() {
 function trackOrder() { let ttn = document.getElementById('trackingNumber')?.value; if(ttn) trackOrderByNumber(ttn); else alert('Введіть номер ТТН'); }
 function trackOrderByNumber(ttn) {
     let res = document.getElementById('trackingResult');
+    if(!res) return;
     res.style.display = 'block';
     res.innerHTML = `<h3>📮 Відстеження #${ttn}</h3><div class="tracking-timeline"><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-status">Замовлення оформлено</div><div class="timeline-date">${new Date().toLocaleDateString()}</div></div></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-status">В дорозі</div><div class="timeline-date">Очікується</div></div></div></div><button class="btn-secondary" onclick="document.getElementById('trackingResult').style.display='none'">Закрити</button>`;
 }
@@ -134,5 +138,6 @@ function selectMethod(m) { alert(`Вибрано спосіб доставки`)
 function saveDeliverySettings() { let s = { defaultBranch: document.getElementById('defaultBranch')?.value, defaultIndex: document.getElementById('defaultIndex')?.value, deliveryPhone: document.getElementById('deliveryPhone')?.value }; localStorage.setItem('fastik_delivery_settings', JSON.stringify(s)); showToast('Налаштування збережено!'); }
 function showToast(m) { let t = document.createElement('div'); t.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#00a49f;color:#fff;padding:12px 20px;border-radius:8px;z-index:9999'; t.textContent = m; document.body.appendChild(t); setTimeout(()=>t.remove(),2000); }
 function closeModal(id) { let m = document.getElementById(id); if(m) m.style.display = 'none'; }
-}
+
+// ========== ЗАПУСК ==========
 initDelivery();
