@@ -1,4 +1,4 @@
-let myAds = [];
+var myAds = [];
 
 function loadMyAds() {
     const saved = localStorage.getItem('fastik_ads');

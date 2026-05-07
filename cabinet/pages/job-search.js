@@ -1,11 +1,11 @@
 // ========== ДАНІ ==========
-let currentUser = null;
-let jobs = [];
-let filteredJobs = [];
-let savedJobs = [];
-let currentPage = 1;
+var currentUser = null;
+var jobs = [];
+var filteredJobs = [];
+var savedJobs = [];
+var currentPage = 1;
 const itemsPerPage = 8;
-let currentStep = 1;
+var currentStep = 1;
 
 const defaultJobs = [
     { id: 1, title: "Frontend Developer", company: "TechInnovate", salary: "45 000 - 60 000 грн", location: "Київ", experience: "2-3 роки", employment: "Повна", description: "Розробка на React", date: "2 год тому", category: "it", isSaved: false },

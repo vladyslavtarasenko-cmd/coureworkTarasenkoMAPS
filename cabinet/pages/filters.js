@@ -1,9 +1,9 @@
 // ========== ДАНІ ==========
-let allAds = [];
-let filteredAds = [];
-let currentView = 'grid';
-let currentLimit = 12;
-let currentLoadMore = 12;
+var allAds = [];
+var filteredAds = [];
+var currentView = 'grid';
+var currentLimit = 12;
+var currentLoadMore = 12;
 
 // Підкатегорії
 const subcategories = {

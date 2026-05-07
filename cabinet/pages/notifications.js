@@ -1,5 +1,5 @@
-let notifications = [];
-let currentFilter = 'all';
+var notifications = [];
+var currentFilter = 'all';
 
 const defaultNotifications = [
     { id: 1, type: 'message', title: 'Нове повідомлення', text: 'Світлана написала вам у чаті', time: '5 хв тому', read: false, icon: '💬' },

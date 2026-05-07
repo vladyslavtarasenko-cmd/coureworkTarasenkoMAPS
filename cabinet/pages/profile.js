@@ -1,6 +1,6 @@
 // ========== ДАНІ ==========
-let currentUser = null;
-let currentAvatar = null;
+var currentUser = null;
+var currentAvatar = null;
 
 function initProfile() {
     loadUser();

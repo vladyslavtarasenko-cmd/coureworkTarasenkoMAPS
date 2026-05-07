@@ -1,10 +1,10 @@
-let currentUser = null;
-let salesOrders = [];
-let purchaseOrders = [];
-let currentSalesFilter = 'all';
-let currentPage = 1;
+var currentUser = null;
+var orders = [];
+var purchaseOrders = [];
+var currentSalesFilter = 'all';
+var currentPage = 1;
 const itemsPerPage = 5;
-let currentOrderId = null;
+var currentOrderId = null;
 
 const defaultSales = [
     { id: 1, orderNumber: 'FT-2025-0001', product: 'iPhone 13 Pro', productImage: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=100', price: 15000, buyer: 'Олександр К.', buyerPhone: '+38 097 123 45 67', date: '10.04.2025', status: 'pending', statusText: 'Очікує підтвердження' },

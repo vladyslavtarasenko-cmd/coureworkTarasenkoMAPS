@@ -1,10 +1,10 @@
 // ========== ДАНІ ==========
-let currentUser = null;
-let givenRatings = [];
-let receivedRatings = [];
-let toRateList = [];
-let selectedRating = 0;
-let currentRateItem = null;
+var currentUser = null;
+var givenRatings = [];
+var receivedRatings = [];
+var toRateList = [];
+var selectedRating = 0;
+var currentRateItem = null;
 
 // ========== ІНІЦІАЛІЗАЦІЯ ==========
 function initRating() {

@@ -1,4 +1,4 @@
-let currentUser = null;
+var currentUser = null;
 
 function initSettings() {
     loadUser();
